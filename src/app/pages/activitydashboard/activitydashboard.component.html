@@ -1,0 +1,84 @@
+<div class="grid p-8 min-h-full" style="background-color: #eeeeee;">
+
+    <div class="col-6">
+
+        <div class="flex flex-column gap-3">
+            @for (act of allActivities; track $index) {
+            <p-card [header]="act.title" [style]="{'border-radius':'10px'}">
+                <ul>
+                    <li>{{act.title}}</li>
+                    <li>{{act.date}}</li>
+                    <li>{{act.description}}</li>
+                    <li>{{act.city}}/{{act.venue}}</li>
+                </ul>
+                <ng-template pTemplate="footer">
+                    <div class="flex gap-3 justify-content-between">
+                        <p-chip [label]="act.category" [icon]="chooseIcon(act.category)" />
+                        <p-button (onClick)="viewDetail(act)" label="View"
+                            [style]="{'border-radius':'5px','box-shadow': '0 4px 10px rgba(0, 0, 0, 0.2)'}" />
+                    </div>
+                </ng-template>
+            </p-card>
+
+            }
+        </div>
+
+
+    </div>
+
+    <div class="col-4">
+        @if (activityDetailCard && activityDetail && !createAndEditMode) {
+
+        <p-card [header]="activityDetail.title" [style]="{'border-radius':'10px'}">
+            <ng-template pTemplate="header">
+                <img alt="Card" style="border-radius: 10px;"
+                    [src]="'../../../assets/images/categoryImages/' + activityDetail['category'] + '.jpg'" />
+            </ng-template>
+            <ul>
+                <li>{{activityDetail['title']}}</li>
+                <li>{{activityDetail['date']}}</li>
+                <li>{{activityDetail['description']}}</li>
+                <li>{{activityDetail['city']}}/{{activityDetail['venue']}}</li>
+            </ul>
+            <ng-template pTemplate="footer">
+                <div class="flex gap-3 mt-1">
+                    <p-button label="Edit" [text]="true" (onClick)="activityForEdit()" />
+                    <p-button label="Cancel" severity="secondary" (onClick)="activityDetail=null" [text]="true" />
+                </div>
+            </ng-template>
+        </p-card>
+        }
+        @if (createAndEditMode) {
+            <p-card [header]="editMode?'Edit Activity':'Create Activity'" [style]="{'border-radius':'10px'}">
+                <div class="flex flex-column" [formGroup]="activityForm">
+                    <input pInputText id="fullname" type="text" class="mb-2" formControlName="title" />
+                    <input pInputText id="fullname" type="date" class="mb-2" formControlName="date" />
+                    <input pInputText id="fullname" type="text" class="mb-2" formControlName="description" />
+                    <input pInputText id="fullname" type="text" class="mb-2" formControlName="category" />
+                    <input pInputText id="fullname" type="text" class="mb-2" formControlName="city" />
+                    <input pInputText id="fullname" type="text" class="mb-2" formControlName="venue" />
+
+                    <div class="flex justify-content-end mt-3 gap-2">
+                        <p-button label="Cancel" severity="secondary" [text]="true" (onClick)="createAndEditMode=false" />
+                        <p-button  label="Submit" severity="success"
+                            [style]="{'border-radius':'5px','box-shadow': '0 4px 10px rgba(0, 0, 0, 0.2)'}" />
+                    </div>
+                </div>
+
+
+            </p-card>
+        }
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+</div>
