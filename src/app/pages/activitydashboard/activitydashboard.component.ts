@@ -29,10 +29,12 @@ export class ActivitydashboardComponent implements OnInit{
   createAndEditMode: boolean=false;
   editMode: boolean=false;
   activityForm:FormGroup;
+  isSubmitting: boolean=false;
 
 
   constructor(private activityService:ActivitiesService,private fb: FormBuilder,private datePipe: DatePipe){
     this.activityForm=this.fb.group({
+      id:[null],
       title:[null],
       date:[null],
       description:[null],
@@ -94,6 +96,7 @@ export class ActivitydashboardComponent implements OnInit{
       ...this.activityDetail,
       date:fotmattedDate
     });
+    
   }
   createMode(){
     this.createAndEditMode=true;
@@ -102,4 +105,41 @@ export class ActivitydashboardComponent implements OnInit{
     this.activityForm.reset();
 
   }
+  submitForm(){
+    if(this.editMode){
+      // this.allActivities=this.allActivities.map(x => x.id==this.activityForm.controls['id'].value?this.activityForm.value:x)
+      // const activityy=this.allActivities.find(x=>x.id==this.activityForm.controls['id'].value);
+      // if(activityy) this.viewDetail(activityy);
+      this.isSubmitting = true;
+       this.activityService.EditActivity(this.activityForm.value).subscribe({
+        next:(res)=>{
+          this.allActivities=this.allActivities.map(x => x.id==this.activityForm.controls['id'].value?this.activityForm.value:x)
+          const activityy=this.allActivities.find(x=>x.id==this.activityForm.controls['id'].value);
+          if(activityy) this.viewDetail(activityy);
+          this.isSubmitting=false;          
+        },
+        error:(err)=>{
+          this.isSubmitting=false;
+        }
+       })
+    }else{
+      const newActivity={...this.activityForm.value,id:this.allActivities.length.toString()};
+      this.allActivities.push(newActivity);
+      this.viewDetail(newActivity);
+    }
+  }
+  deleteActivity(id:string){
+    this.activityService.DeleteActivity(id).subscribe({
+      next:(res)=>{
+        this.allActivities= this.allActivities.filter(x=> x.id !==id)
+      },
+      error:(err)=>{
+
+      }
+    })
+  }
+  // checkingObjectValue(obj:Record<string,any>):boolean{
+  //   const objWithoutValue
+  //   return Object.values(obj).some(value => value == null || value == undefined || value == '')
+  // }
 }

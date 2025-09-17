@@ -14,7 +14,13 @@ export class ActivitiesService {
   getAllActivities(){
     return this.http.get<IActivities[]>(environment.apiBaseUrl+'activities')
   }
-
+  EditActivity(activity:IActivities){
+    return this.http.put(environment.apiBaseUrl+'activities',activity)
+  }
+  DeleteActivity(id:string){
+    return this.http.delete(environment.apiBaseUrl+`activities/${id}`)
+  }
+  
 
 
 }
