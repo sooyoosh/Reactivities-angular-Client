@@ -32,7 +32,8 @@
     </div>
 
     <div class="col-4">
-        @if (activityDetailCard && activityDetail && !createAndEditMode) {
+        filter goes here
+        <!-- @if (activityDetailCard && activityDetail && !createAndEditMode) {
 
         <p-card [header]="activityDetail.title" [style]="{'border-radius':'10px'}">
             <ng-template pTemplate="header">
@@ -52,9 +53,9 @@
                 </div>
             </ng-template>
         </p-card>
-        }
+        } -->
         @if (createAndEditMode) {
-            <p-card [header]="editMode?'Edit Activity':'Create Activity'" [style]="{'border-radius':'10px'}">
+            <!-- <p-card [header]="editMode?'Edit Activity':'Create Activity'" [style]="{'border-radius':'10px'}">
                 <div class="flex flex-column" [formGroup]="activityForm">
                     <input pInputText id="title" placeholder="title" type="text" class="mb-2" formControlName="title" />
                     <input pInputText id="date" type="date" class="mb-2" formControlName="date" />
@@ -71,7 +72,7 @@
                 </div>
 
 
-            </p-card>
+            </p-card> -->
         }
 
 

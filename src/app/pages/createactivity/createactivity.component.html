@@ -1,0 +1,29 @@
+<div class=" p-8 min-h-full" style="background-color: #eeeeee;">
+
+<p-card header="Create Activity" [style]="{'border-radius':'10px'}">
+                <div class="flex flex-column" [formGroup]="activityForm">
+                    <input pInputText id="title" placeholder="title" type="text" class="mb-2" formControlName="title" />
+                    <input pInputText id="date" type="date" class="mb-2" formControlName="date" />
+                    <input pInputText id="description" placeholder="description" type="text" class="mb-2" formControlName="description" />
+                    <input pInputText id="category" placeholder="category" type="text" class="mb-2" formControlName="category" />
+                    <input pInputText id="city" placeholder="city" type="text" class="mb-2" formControlName="city" />
+                    <input pInputText id="venue" placeholder="venue" type="text" class="mb-2" formControlName="venue" />
+
+                    <div class="flex justify-content-end mt-3 gap-2">
+                        <p-button label="Cancel" severity="secondary" [text]="true" />
+                        <p-button  label="Submit" severity="success"
+                            [style]="{'border-radius':'5px','box-shadow': '0 4px 10px rgba(0, 0, 0, 0.2)'}" />
+                    </div>
+                </div>
+
+
+            </p-card>
+
+
+
+
+
+
+
+
+</div>

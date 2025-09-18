@@ -10,31 +10,29 @@
 
     
     <div class="d-flex gap-3">
-      <a class="text-white text-decoration-none" 
-         routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
-         Activities
+      <a class=" text-decoration-none route"  
+         routerLink="/activities" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+         ACTIVITIES
       </a>
-      <a class="text-white text-decoration-none" 
-         routerLink="salam" routerLinkActive="active">
-         Contact
-      </a>
-      <a class="text-white text-decoration-none" 
-         routerLink="salam" routerLinkActive="active">
-         Activities
+      
+      <a class=" text-decoration-none route"  
+         routerLink="create" routerLinkActive="active">
+         CREATE ACTIVITY
       </a>
     </div>
 
     
     <div>
-      <p-button label="CREATE ACTIVITY" severity="warning" (onClick)="dashboard.createMode()" 
+      <!-- <p-button label="CREATE ACTIVITY" severity="warning" (onClick)="dashboard.createMode()" 
                 [style]="{'border-radius':'5px','box-shadow': '0 4px 10px rgba(0, 0, 0, 0.2)'}">
-      </p-button>
+      </p-button> -->
     </div>
 
   </div>
 </nav>
 
-<app-activitydashboard #dashboard></app-activitydashboard>
+<!-- <app-activitydashboard></app-activitydashboard> -->
+ <router-outlet></router-outlet>
 
 
 

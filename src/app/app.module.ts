@@ -13,12 +13,18 @@ import { CardModule } from 'primeng/card';
 import { ChipModule } from 'primeng/chip';
 import { InputTextModule } from 'primeng/inputtext';
 import { DatePipe } from '@angular/common';
+import { CreateactivityComponent } from './pages/createactivity/createactivity.component';
+import { MainComponent } from './pages/main/main.component';
+import { ActivitydetailComponent } from './pages/activitydetail/activitydetail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    ActivitydashboardComponent
+    ActivitydashboardComponent,
+    CreateactivityComponent,
+    MainComponent,
+    ActivitydetailComponent
   ],
   imports: [
     BrowserModule,
