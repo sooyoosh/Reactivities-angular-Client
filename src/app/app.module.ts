@@ -16,6 +16,14 @@ import { DatePipe } from '@angular/common';
 import { CreateactivityComponent } from './pages/createactivity/createactivity.component';
 import { MainComponent } from './pages/main/main.component';
 import { ActivitydetailComponent } from './pages/activitydetail/activitydetail.component';
+import { AvatarModule } from 'primeng/avatar';
+import { AvatarGroupModule } from 'primeng/avatargroup';
+import { MatIconModule } from '@angular/material/icon';
+import { ToolbarModule } from 'primeng/toolbar';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { ListboxModule } from 'primeng/listbox';
+import { CalendarModule } from 'primeng/calendar';
+
 
 @NgModule({
   declarations: [
@@ -35,7 +43,14 @@ import { ActivitydetailComponent } from './pages/activitydetail/activitydetail.c
     CardModule,
     ChipModule,
     ReactiveFormsModule,
-    InputTextModule
+    InputTextModule,
+    AvatarModule,
+    AvatarGroupModule,
+    MatIconModule,
+    ToolbarModule,
+    InputTextareaModule,
+    ListboxModule,
+    CalendarModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

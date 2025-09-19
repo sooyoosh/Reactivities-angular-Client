@@ -1,0 +1,20 @@
+.overlay-content {
+  position: absolute;
+  bottom: 10px;
+  padding-bottom: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;   
+  width: 100%;    
+  color: white;
+  text-shadow: 0px 2px 5px rgba(0,0,0,0.7);
+}
+.chipC{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+/*  */
+
+
+/*  */

@@ -3,7 +3,7 @@
     @if(this.activityDetail){
 
 
-    <p-card [header]="activityDetail.title" [style]="{'border-radius':'10px'}">
+    <!-- <p-card [header]="activityDetail.title" [style]="{'border-radius':'10px'}">
         <ng-template pTemplate="header">
             <img alt="Card" style="border-radius: 10px;"
                 [src]="'../../../assets/images/categoryImages/' + activityDetail['category'] + '.jpg'" />
@@ -20,7 +20,107 @@
                 <p-button label="Cancel" severity="secondary" [text]="true" />
             </div>
         </ng-template>
-    </p-card>
+    </p-card> -->
+
+    <div class="grid">
+        <div class="col-8 ">
+            <div class="relative">
+
+                <img alt="Card" style="border-radius: 15px;"  class="w-full" 
+                [src]="'../../../assets/images/categoryImages/' + activityDetail['category'] + '.jpg'" />
+                <p-chip *ngIf="isCanclled" label="CANCELED" class="chipC" [style]="{'background-color':'rgba(220, 53, 69, 0.4)','color':'#fff','border-radius':'6px'}" />
+                <div class="overlay-content flex justify-content-between">
+                    <div >
+                        <h3 class="font-bold">{{activityDetail.title}}</h3>
+                        <p class="font-bold">{{ activityDetail['date'] | date:'d MMM yyyy ' }} at {{ activityDetail['date']| date:'h:mm a' }}</p>
+                        <p class="font-bold">hosted by <a class="text-decoration-none">bob</a></p>
+                    </div>
+                    <div class="flex gap-2 align-items-end mb-2">
+                        <p-button *ngIf="isCanclled" label="RE-ACTIVE ACTIVITY"  [text]="true" [style]="{'background-color':'rgba(40, 167, 69, 0.4)','color':'#fff','border-radius':'6px'}"/>
+                        <p-button *ngIf="!isCanclled" label="CANCEL ACTIVITY"  [text]="true" [style]="{'background-color':'rgba(220, 53, 69, 0.4)','color':'#fff','border-radius':'6px'}"/>
+                        <p-button label="MANAGE EVENT" [style]="{'background-color':'rgba(13, 202, 240, 0.4)','color':'#fff','border-radius':'6px'}" 
+                            (onClick)="goToEdit(activityDetail.id)" [text]="true" />
+    
+                    </div>
+                </div>
+            </div>
+
+            
+            <!--  -->
+            <div class="mt-2">
+             <p-card  [style]="{'border-radius':'15px'}">
+                <div class="flex gap-4">
+                    <i class="bi bi-info-circle-fill text-2xl"></i>
+                    <p class="mt-1">{{activityDetail.description}}</p>
+                </div>
+                <hr>
+                <div class="flex gap-4">
+                    <i class="bi bi-calendar-date-fill text-2xl"></i>
+                    <p class="mt-1">{{activityDetail.date|date:'d MMM yyyy'}} at {{activityDetail.date|date:'h:mm a'}}</p>
+                </div>
+                <hr>
+                <div class="flex gap-4">
+                    <i class="bi bi-geo-alt-fill text-2xl"></i>
+                    <p class="mt-1">{{activityDetail.venue}},{{activityDetail.city}}</p>
+                </div>
+             </p-card>   
+            </div>
+
+            <!--  -->
+            <div class="mt-2">
+                <p-card  [style]="{'border-radius':'15px'}">
+                    <p-toolbar [style]="{'background-color':'rgb(44, 44, 250)'}">
+                        <div class="text-center w-100">
+                            <h3 class="text-white ">Chat about this event</h3>
+                        </div>
+                    </p-toolbar>
+                    <div class="flex flex-column">
+                        <input placeholder="Enter your comment" type="text" pInputText class="w-100 mt-2 p-3" />
+                         <div class="flex pl-4 pt-4 align-items-center">
+                        <p-avatar icon="pi pi-user" styleClass="mr-4" size="xlarge" shape="circle" />
+                        <div>
+                            <h4 class="font-bold" style="color: blue;">Bob</h4>
+                            <p>comments goes here</p>
+                        </div>
+                    </div>
+                    </div>
+                </p-card>
+            </div>
+        </div>
+        <!--  --> <!--  --> <!--  --> <!--  --> <!--  --> <!--  --> <!--  --> <!--  --> <!--  -->
+        <div class="col-4">
+              <div >
+                <p-card  [style]="{'border-radius':'15px'}">
+                    <p-toolbar [style]="{'background-color':'rgb(44, 44, 250)'}">
+                        <div class="text-center w-100">
+                            <h4 class="text-white ">2 people is going</h4>
+                        </div>
+                    </p-toolbar>
+                     <div class="flex mt-3 justify-content-between">
+                            <div class="flex">
+                                 <p-avatar label="a" styleClass="mr-2" size="xlarge" shape="circle" />
+                                 <h4 class="font-bold mt-3">Bob</h4>
+                            </div>
+                            <div class="flex flex-column gap-1">
+                                <p-button label="Host" severity="warning" [style]="{'border-radius':'5px','box-shadow': '0 4px 10px rgba(0, 0, 0, 0.2)'}" />
+                                <p class="font-bold" style="color: #F59E0B;">following</p>
+                            </div>
+                        </div>
+                </p-card>
+            </div>
+            
+
+
+        </div>
+
+
+
+
+    </div>
+
+
+
+
     }
 
 

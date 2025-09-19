@@ -12,6 +12,8 @@ import { ActivitiesService } from '../../services/activities.service';
 export class ActivitydetailComponent implements OnInit{
 activityDetail:IActivities
 activityId: string;
+isCanclled:boolean=false
+isGoing:boolean=false
   // activity: IActivities;
 constructor(private route:ActivatedRoute,private router:Router,private activityService:ActivitiesService){}
   

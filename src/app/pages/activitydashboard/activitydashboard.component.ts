@@ -31,7 +31,7 @@ export class ActivitydashboardComponent implements OnInit{
   editMode: boolean=false;
   activityForm:FormGroup;
   isSubmitting: boolean=false;
-
+  items: any[]=[];
 
   constructor(private activityService:ActivitiesService,private fb: FormBuilder,private datePipe: DatePipe,private route:Router){
     this.activityForm=this.fb.group({
@@ -51,7 +51,13 @@ export class ActivitydashboardComponent implements OnInit{
   ngOnInit() {
     
     this.getAllActivities();
-    
+       this.items = [
+            { name: 'New York', code: 'NY' },
+            { name: 'Rome', code: 'RM' },
+            { name: 'London', code: 'LDN' },
+            //{ name: 'Istanbul', code: 'IST' },
+            //{ name: 'Paris', code: 'PRS' }
+        ];
 
   }
   getAllActivities(){
