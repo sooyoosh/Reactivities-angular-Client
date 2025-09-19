@@ -12,7 +12,8 @@ const routes: Routes = [
       {path:'',component:MainComponent},
       {path:'activities',component:ActivitydashboardComponent},
       {path:'activities/:id',component:ActivitydetailComponent},
-      {path:'create',component:CreateactivityComponent}
+      {path:'create',component:CreateactivityComponent},
+      {path:'manage/:id',component:CreateactivityComponent}
     ]
   }
 ];

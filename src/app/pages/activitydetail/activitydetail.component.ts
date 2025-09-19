@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IActivities } from '../activitydashboard/activitydashboard.component';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ActivitiesService } from '../../services/activities.service';
 
 
 @Component({
@@ -7,9 +9,26 @@ import { IActivities } from '../activitydashboard/activitydashboard.component';
   templateUrl: './activitydetail.component.html',
   styleUrl: './activitydetail.component.css'
 })
-export class ActivitydetailComponent {
+export class ActivitydetailComponent implements OnInit{
 activityDetail:IActivities
-constructor(){}
+activityId: string;
+  // activity: IActivities;
+constructor(private route:ActivatedRoute,private router:Router,private activityService:ActivitiesService){}
+  
 
+ngOnInit(){
+    this.route.params.subscribe((obj)=>{
+      this.activityId=obj['id'];
+      this.getActivity();
+    })
+  }
+
+  async getActivity(){
+    this.activityDetail=await this.activityService.GetDetailActivity(this.activityId);
+  }
+
+  goToEdit(id:string){
+    this.router.navigate([`manage/${id}`])
+  }
 
 }
