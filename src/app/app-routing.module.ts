@@ -7,15 +7,17 @@ import { MainComponent } from './pages/main/main.component';
 import { ActivitydetailComponent } from './pages/activitydetail/activitydetail.component';
 
 const routes: Routes = [
-  {path:'',component:HomeComponent,
+  {path:'',component:HomeComponent },
+  {path:'main',component:MainComponent,
     children:[
-      {path:'',component:MainComponent},
+      //{path:'',component:MainComponent},
       {path:'activities',component:ActivitydashboardComponent},
       {path:'activities/:id',component:ActivitydetailComponent},
       {path:'create',component:CreateactivityComponent},
       {path:'manage/:id',component:CreateactivityComponent}
     ]
-  }
+   }
+
 ];
 
 @NgModule({

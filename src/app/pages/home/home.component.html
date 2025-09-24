@@ -1,46 +1,21 @@
-<nav class="navbar navbar-expand-lg custom-navbar" 
-     style="background: linear-gradient(90deg, #0D47A1 0%, #86b4e2ff 100%); color: #fff;">
-  <div class="container-fluid d-flex justify-content-between align-items-center">
-    
+<div class="min-h-full home-container text-white
+ flex justify-content-center 
+ align-items-center" >
+
+ <div class="w-6 h-12rem flex flex-column mb-8 
+ justify-content-center align-items-center">
    
-    <div class="d-flex align-items-center gap-2">
-      <i class="pi pi-users text-3xl"></i>
-      <a class="navbar-brand text-white font-bold text-3xl" href="/">Reactivities</a>
-    </div>
+  <div class="flex gap-3">
+     <i class="bi bi-people-fill text-8xl"></i>
+     <h1 class="text-8xl" style="margin-top: 11px;">Reactivities</h1>
+   </div>
+   <p class="text-7xl">Welcome to reactivities</p>
 
-    
-    <div class="d-flex gap-3">
-      <a class=" text-decoration-none route"  
-         routerLink="/activities" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
-         ACTIVITIES
-      </a>
-      
-      <a class=" text-decoration-none route"  
-         routerLink="create" routerLinkActive="active">
-         CREATE ACTIVITY
-      </a>
-    </div>
+   <p-button label="TAKE ME TO THE ACTIVITIES" (onClick)="goToActivities()"
+   severity="info" [text]="true" [style]="{'border-radius':'5px',
+   'box-shadow': '0 4px 10px rgba(0, 0, 0, 0.2)', 'padding':'1.5rem 3rem',
+    'font-size':'1.5rem','color':'white'}" />
 
-    
-    <div>
-      <!-- <p-button label="CREATE ACTIVITY" severity="warning" (onClick)="dashboard.createMode()" 
-                [style]="{'border-radius':'5px','box-shadow': '0 4px 10px rgba(0, 0, 0, 0.2)'}">
-      </p-button> -->
-    </div>
+</div>
 
-  </div>
-</nav>
-
-<!-- <app-activitydashboard></app-activitydashboard> -->
- <router-outlet></router-outlet>
-
-
-
-
-
-
-
-
-
-
-
+</div>
