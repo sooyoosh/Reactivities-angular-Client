@@ -8,7 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 //
 import { ButtonModule } from 'primeng/button';
 import { ActivitydashboardComponent } from './pages/activitydashboard/activitydashboard.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { CardModule } from 'primeng/card';
 import { ChipModule } from 'primeng/chip';
 import { InputTextModule } from 'primeng/inputtext';
@@ -23,6 +23,12 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ListboxModule } from 'primeng/listbox';
 import { CalendarModule } from 'primeng/calendar';
+import { CounterComponent } from './pages/counter/counter.component';
+import { StoreModule } from '@ngrx/store';
+import { counterReducer } from './stores/counter/counter.reducer';
+import { loadingReducer } from './stores/loading/loading.reducer';
+import { loadingInterceptor } from './interceptors/loading.interceptor';
+import { LoadingComponent } from './components/loading/loading.component';
 
 
 @NgModule({
@@ -32,7 +38,9 @@ import { CalendarModule } from 'primeng/calendar';
     ActivitydashboardComponent,
     CreateactivityComponent,
     MainComponent,
-    ActivitydetailComponent
+    ActivitydetailComponent,
+    CounterComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
@@ -50,9 +58,13 @@ import { CalendarModule } from 'primeng/calendar';
     ToolbarModule,
     InputTextareaModule,
     ListboxModule,
-    CalendarModule
+    CalendarModule,
+    StoreModule.forRoot({
+      counter: counterReducer,
+      loading: loadingReducer
+    })
   ],
-  providers: [DatePipe],
+  providers: [DatePipe,provideHttpClient(withInterceptors([loadingInterceptor]))],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

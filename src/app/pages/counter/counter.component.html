@@ -1,0 +1,17 @@
+<p>counter works!</p>
+
+<h2>counter is{{counter$|async}}</h2>
+
+<div class="flex gap-2 ">
+    <button pButton severity="success" (click)="inc()"></button>
+    <button pButton severity="danger" (click)="dec()"></button>
+    <button pButton severity="primary" (click)="incFive()">5</button>
+</div>
+
+
+
+<div class="flex flex-column">
+@for (event of events$|async; track $index) {
+    <p>{{event}}</p>
+}
+</div>

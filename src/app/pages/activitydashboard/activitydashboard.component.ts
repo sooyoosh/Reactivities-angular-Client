@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivitiesService } from '../../services/activities.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
-import {  Router } from '@angular/router';
+import {  ActivatedRoute, Router } from '@angular/router';
 export interface IActivities{
   id: string
   title: string
@@ -33,7 +33,7 @@ export class ActivitydashboardComponent implements OnInit{
   isSubmitting: boolean=false;
   items: any[]=[];
 
-  constructor(private activityService:ActivitiesService,private fb: FormBuilder,private datePipe: DatePipe,private route:Router){
+  constructor(private activityService:ActivitiesService,private fb: FormBuilder,private datePipe: DatePipe,private route:Router,private activeRoute:ActivatedRoute){
     this.activityForm=this.fb.group({
       id:[null],
       title:[null],
@@ -94,7 +94,7 @@ export class ActivitydashboardComponent implements OnInit{
     // this.activityDetail=detail;
     // this.activityDetailCard=true;
     // this.createAndEditMode=false;
-    this.route.navigate([`activities/${detail.id}`])
+    this.route.navigate([`main/activities/${detail.id}`])
   }
   activityForEdit(){
     this.createAndEditMode=true;
