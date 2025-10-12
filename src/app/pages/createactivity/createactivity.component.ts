@@ -97,7 +97,7 @@ export class CreateactivityComponent implements OnInit{
           this.router.navigate([`activities/${id}`])
         },
         error:(err)=>{
-          debugger
+          
         }
       })      
     }

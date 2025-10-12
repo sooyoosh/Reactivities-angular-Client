@@ -3,6 +3,7 @@ import { ActivitiesService } from '../../services/activities.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import {  ActivatedRoute, Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 export interface IActivities{
   id: string
   title: string
@@ -33,7 +34,9 @@ export class ActivitydashboardComponent implements OnInit{
   isSubmitting: boolean=false;
   items: any[]=[];
 
-  constructor(private activityService:ActivitiesService,private fb: FormBuilder,private datePipe: DatePipe,private route:Router,private activeRoute:ActivatedRoute){
+  constructor(private activityService:ActivitiesService,
+    private fb: FormBuilder,private datePipe: DatePipe,
+    private route:Router,private activeRoute:ActivatedRoute,private messageService: MessageService){
     this.activityForm=this.fb.group({
       id:[null],
       title:[null],
@@ -46,10 +49,11 @@ export class ActivitydashboardComponent implements OnInit{
       latitude:[null],
       longitude:[null],
     })
+
   }
 
   ngOnInit() {
-    
+    //this.messageService.add({ severity: 'success',key:'tm' ,summary: 'Success', detail: 'Message Content',life:1000 });
     this.getAllActivities();
        this.items = [
             { name: 'New York', code: 'NY' },

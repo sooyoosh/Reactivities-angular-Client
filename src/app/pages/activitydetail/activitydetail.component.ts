@@ -26,7 +26,14 @@ ngOnInit(){
   }
 
   async getActivity(){
-    this.activityDetail=await this.activityService.GetDetailActivity(this.activityId);
+    
+    try {
+      this.activityDetail=await this.activityService.GetDetailActivity(this.activityId);
+    } catch (error) {
+      
+       this.router.navigate(['main/not-found'])
+    }
+    //
   }
 
   goToEdit(id:string){

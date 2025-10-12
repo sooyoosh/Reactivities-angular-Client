@@ -12,15 +12,12 @@ export const loadingInterceptor: HttpInterceptorFn = (req, next) => {
 const store=inject(Store);
 const loading$=store.select(selectLoadingState);
 
-
-//   loadingService.show();
     store.dispatch(LoadingActions.show());
   return next(req).pipe(
-    delay(1000),
+    delay(200),
     finalize(()=>{
-      //loadingService.hide();
       store.dispatch(LoadingActions.hide());
     })
   );
-  // return next(req);
+  
 };

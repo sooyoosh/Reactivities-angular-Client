@@ -29,6 +29,15 @@ import { counterReducer } from './stores/counter/counter.reducer';
 import { loadingReducer } from './stores/loading/loading.reducer';
 import { loadingInterceptor } from './interceptors/loading.interceptor';
 import { LoadingComponent } from './components/loading/loading.component';
+import { CookieService } from 'ngx-cookie-service';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { handlingErrorInterceptor } from './interceptors/handlingError.interceptor';
+import { NotfoundComponent } from './pages/notfound/notfound.component';
+
+
+
+
 
 
 @NgModule({
@@ -40,7 +49,8 @@ import { LoadingComponent } from './components/loading/loading.component';
     MainComponent,
     ActivitydetailComponent,
     CounterComponent,
-    LoadingComponent
+    LoadingComponent,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,
@@ -59,12 +69,14 @@ import { LoadingComponent } from './components/loading/loading.component';
     InputTextareaModule,
     ListboxModule,
     CalendarModule,
+    ToastModule,
     StoreModule.forRoot({
       counter: counterReducer,
       loading: loadingReducer
     })
   ],
-  providers: [DatePipe,provideHttpClient(withInterceptors([loadingInterceptor]))],
+  providers: [MessageService,CookieService,DatePipe
+    ,provideHttpClient(withInterceptors([loadingInterceptor,handlingErrorInterceptor]))],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

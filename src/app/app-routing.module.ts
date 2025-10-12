@@ -6,6 +6,7 @@ import { CreateactivityComponent } from './pages/createactivity/createactivity.c
 import { MainComponent } from './pages/main/main.component';
 import { ActivitydetailComponent } from './pages/activitydetail/activitydetail.component';
 import { CounterComponent } from './pages/counter/counter.component';
+import { NotfoundComponent } from './pages/notfound/notfound.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent },
@@ -16,7 +17,9 @@ const routes: Routes = [
       {path:'activities/:id',component:ActivitydetailComponent},
       {path:'create',component:CreateactivityComponent},
       {path:'manage/:id',component:CreateactivityComponent},
-      {path:'counter',component:CounterComponent}
+      {path:'counter',component:CounterComponent},
+      {path:'not-found',component:NotfoundComponent},
+      {path:'**',component:NotfoundComponent}
     ]
    }
 
