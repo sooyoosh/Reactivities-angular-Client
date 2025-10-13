@@ -2,20 +2,61 @@
 
     <p-card [header]="activityDetail?'EDIT ACTIVITY':'CREATE ACTIVITY '" [style]="{'border-radius':'10px'}">
         <div class="flex flex-column" [formGroup]="activityForm">
-            <input pInputText id="title" placeholder="title" type="text" class="mb-2" formControlName="title" />
-            <input pInputText id="date" type="date" class="mb-2" formControlName="date" />
+            <input pInputText id="title" placeholder="title" type="text" class="mb-2 ng-dirty" formControlName="title"
+                [ngClass]="{'ng-dirty':activityForm.controls['title'].invalid &&(activityForm.controls['title'].dirty||activityForm.controls['title'].touched)}" />
+
+            <!-- <input pInputText id="date" type="date" class="mb-2" formControlName="date"
+            [ngClass]="{'ng-dirty':activityForm.controls['date'].invalid &&(activityForm.controls['date'].dirty||activityForm.controls['date'].touched)}" /> -->
+
+            <p-calendar class="mb-2 w-100" formControlName="date" [showIcon]="true" placeholder="Select a date"
+                icon="pi pi-calendar"
+                [ngClass]="{'ng-dirty':activityForm.controls['date'].invalid &&(activityForm.controls['date'].dirty||activityForm.controls['date'].touched)}" />
+
+
             <input pInputText id="description" placeholder="description" type="text" class="mb-2"
-                formControlName="description" />
-            <input pInputText id="category" placeholder="category" type="text" class="mb-2"
-                formControlName="category" />
-            <input pInputText id="city" placeholder="city" type="text" class="mb-2" formControlName="city" />
-            <input pInputText id="venue" placeholder="venue" type="text" class="mb-2" formControlName="venue" />
+                formControlName="description"
+                [ngClass]="{'ng-dirty':activityForm.controls['description'].invalid &&(activityForm.controls['description'].dirty||activityForm.controls['description'].touched)}" />
+            <!-- <input pInputText id="category" placeholder="category" type="text" class="mb-2" formControlName="category"
+                [ngClass]="{'ng-dirty':activityForm.controls['category'].invalid &&(activityForm.controls['category'].dirty||activityForm.controls['category'].touched)}" /> -->
+
+            <!-- dropdown -->
+            <p-dropdown class="mb-2 w-100" [options]="categoyOptions" formControlName="category" optionLabel="lable"
+                optionValue="value" placeholder="Select a Category"
+                [ngClass]="{'ng-dirty':activityForm.controls['category'].invalid &&(activityForm.controls['category'].dirty||activityForm.controls['category'].touched)}">
+                <ng-template pTemplate="selectedItem">
+                    <div class="flex align-items-center gap-2" *ngIf="activityForm.controls['category'].valid">
+                        <i [class]="passIcon(activityForm.controls['category'].value)"></i>
+                        <div>{{ activityForm.controls['category'].value }}</div>
+                    </div>
+                </ng-template>
+                <ng-template let-category pTemplate="item">
+                    <div class="flex align-items-center gap-2">
+                        <i [class]="passIcon(category.value)"></i>
+                        <div>{{ category.lable }}</div>
+                    </div>
+                </ng-template>
+            </p-dropdown>
+            <!-- dropdown -->
+            <!-- location -->
+              <p-autoComplete class=" mb-2" 
+                [placeholder]="path==='manage'?'search your location if you want change it':'search your location'"
+                (onSelect)="selectLocation($event)"
+                [suggestions]="suggestionsLocation"
+                optionLabel="display_name"
+                (completeMethod)="searchLocation($event)"
+                [ngClass]="{' ng-invalid ng-dirty':activityForm.controls['city'].invalid &&(isLocationFielsClicked)}"
+                />
+            <!-- location -->
+
+            <!-- <input pInputText id="city" placeholder="city" type="text" class="mb-2" formControlName="city"
+                [ngClass]="{'ng-dirty':activityForm.controls['city'].invalid &&(activityForm.controls['city'].dirty||activityForm.controls['city'].touched)}" />
+            <input pInputText id="venue" placeholder="venue" type="text" class="mb-2" formControlName="venue"
+                [ngClass]="{'ng-dirty':activityForm.controls['venue'].invalid &&(activityForm.controls['venue'].dirty||activityForm.controls['venue'].touched)}" /> -->
 
             <div class="flex justify-content-end mt-3 gap-2">
                 <p-button label="Cancel" severity="secondary" [text]="true" />
-                <p-button label="Submit" severity="success"
-                [disabled]="this.activityForm.invalid"
-                (onClick)="this.submitForm()"
+                <p-button label="Submit" severity="success" [disabled]="this.activityForm.invalid"
+                    (onClick)="this.submitForm()"
                     [style]="{'border-radius':'5px','box-shadow': '0 4px 10px rgba(0, 0, 0, 0.2)'}" />
             </div>
         </div>
@@ -24,7 +65,8 @@
     </p-card>
 
 
-
+<!-- <hr>
+<app-map></app-map> -->
 
 
 

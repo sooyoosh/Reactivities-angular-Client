@@ -34,8 +34,9 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { handlingErrorInterceptor } from './interceptors/handlingError.interceptor';
 import { NotfoundComponent } from './pages/notfound/notfound.component';
-
-
+import { DropdownModule } from 'primeng/dropdown';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { MapComponent } from './pages/map/map.component';
 
 
 
@@ -50,7 +51,8 @@ import { NotfoundComponent } from './pages/notfound/notfound.component';
     ActivitydetailComponent,
     CounterComponent,
     LoadingComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
@@ -70,6 +72,8 @@ import { NotfoundComponent } from './pages/notfound/notfound.component';
     ListboxModule,
     CalendarModule,
     ToastModule,
+    DropdownModule,
+    AutoCompleteModule,    
     StoreModule.forRoot({
       counter: counterReducer,
       loading: loadingReducer

@@ -7,7 +7,7 @@ import { MessageService } from 'primeng/api';
 export interface IActivities{
   id: string
   title: string
-  date: string
+  date: Date
   description: string
   category: string
   isCancelled: boolean
