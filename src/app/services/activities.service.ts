@@ -13,21 +13,21 @@ export class ActivitiesService {
 
 
   getAllActivities(){
-    return this.http.get<IActivities[]>(environment.apiBaseUrl+'activities')
+    return this.http.get<IActivities[]>(environment.apiBaseUrl+'activities',{withCredentials:true})
   }
   EditActivity(activity:IActivities){
-    return this.http.put(environment.apiBaseUrl+'activities',activity)
+    return this.http.put(environment.apiBaseUrl+'activities',activity,{withCredentials:true})
   }
   DeleteActivity(id:string){
-    return this.http.delete(environment.apiBaseUrl+`activities/${id}`)
+    return this.http.delete(environment.apiBaseUrl+`activities/${id}`,{withCredentials:true})
   }
   async GetDetailActivity(id:string):Promise<IActivities>{
     return await firstValueFrom(
-      this.http.get<IActivities>(environment.apiBaseUrl+`activities/${id}`)
+      this.http.get<IActivities>(environment.apiBaseUrl+`activities/${id}`,{withCredentials:true})
     ) 
   }
   CreateActivity(body){
-    return this.http.post(environment.apiBaseUrl+'activities',body,{responseType:'text'})    
+    return this.http.post(environment.apiBaseUrl+'activities',body,{responseType:'text',withCredentials:true})    
   }
 
 }

@@ -24,14 +24,38 @@
          COUNTER
       </a>
     </div>
-
     
-    <div>
-      <!-- <p-button label="CREATE ACTIVITY" severity="warning" (onClick)="dashboard.createMode()" 
-                [style]="{'border-radius':'5px','box-shadow': '0 4px 10px rgba(0, 0, 0, 0.2)'}">
-      </p-button> -->
-    </div>
+    <!-- menu -->
+    <div >
 
+
+      <ng-container *ngIf="userInfo!=null">
+        <p-menubar [model]="items" />
+      </ng-container>
+      
+
+
+
+
+
+
+      <div class="d-flex gap-3">
+        <ng-container *ngIf="userInfo==null">
+
+          <a class="text-decoration-none route"  
+             routerLink="login" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+             LOGIN
+          </a>
+          
+          <a class=" text-decoration-none route"  
+             routerLink="register" routerLinkActive="active">
+             REGISTER
+          </a>
+        </ng-container>
+  
+    </div>
+    </div>
+    <!-- menu -->
   </div>
 </nav>
 

@@ -7,6 +7,7 @@ import { MainComponent } from './pages/main/main.component';
 import { ActivitydetailComponent } from './pages/activitydetail/activitydetail.component';
 import { CounterComponent } from './pages/counter/counter.component';
 import { NotfoundComponent } from './pages/notfound/notfound.component';
+import { LoginComponent } from './pages/login/login.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
       {path:'create',component:CreateactivityComponent},
       {path:'manage/:id',component:CreateactivityComponent},
       {path:'counter',component:CounterComponent},
+      {path:'login',component:LoginComponent},
       {path:'not-found',component:NotfoundComponent},
       {path:'**',component:NotfoundComponent}
     ]

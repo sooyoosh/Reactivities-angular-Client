@@ -2,6 +2,9 @@
     font-weight: bolder;
     color: rgb(241, 241, 151);; 
 } */
+
+
+
 .route{
   color: white;
 }
@@ -17,4 +20,60 @@ a.route.active {
               0 2px 6px rgba(0, 0, 0, 0.18);
   /* border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px; */
+}
+/* menu bar css */
+
+:host ::ng-deep .p-menubar {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  padding-top: 10px !important;
+  padding-right: 10px !important;
+}
+
+:host ::ng-deep .p-menubar .p-menuitem-link {
+  text-decoration: none !important;
+  color: #000 !important;
+  font-weight: bolder !important;
+  background: transparent !important;
+  padding: 0.5rem 1rem !important;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+:host ::ng-deep .p-menubar .p-menuitem-link:hover {
+  background: rgba(0, 0, 0, 0.185) !important;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+/**/
+:host ::ng-deep .p-menubar .pi {
+  font-size: 1.2rem !important;
+  color: #000 !important;
+  font-weight: bold;
+}
+
+/* dropdown (زیرمنو) */
+:host ::ng-deep .p-menubar .p-submenu-list {
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  right: 0.7rem;
+}
+
+/* آیتم‌های منو در dropdown */
+:host ::ng-deep .p-submenu-list .p-menuitem-link {
+  background: transparent !important;
+  color: #000 !important;
+  text-decoration: none !important;
+  padding: 0.4rem 1rem !important;
+}
+
+:host ::ng-deep .p-submenu-list .p-menuitem-link:hover {
+  background: rgba(0, 0, 0, 0.05) !important;
+  border-radius: 6px;
 }

@@ -37,7 +37,8 @@ import { NotfoundComponent } from './pages/notfound/notfound.component';
 import { DropdownModule } from 'primeng/dropdown';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { MapComponent } from './pages/map/map.component';
-
+import { LoginComponent } from './pages/login/login.component';
+import { MenubarModule } from 'primeng/menubar';
 
 
 
@@ -52,7 +53,8 @@ import { MapComponent } from './pages/map/map.component';
     CounterComponent,
     LoadingComponent,
     NotfoundComponent,
-    MapComponent
+    MapComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +75,8 @@ import { MapComponent } from './pages/map/map.component';
     CalendarModule,
     ToastModule,
     DropdownModule,
-    AutoCompleteModule,    
+    AutoCompleteModule,
+    MenubarModule,    
     StoreModule.forRoot({
       counter: counterReducer,
       loading: loadingReducer
