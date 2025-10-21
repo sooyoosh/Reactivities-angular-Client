@@ -1,26 +1,25 @@
- 
- 
  <div class="mt-5 w-100 flex justify-content-center">
 
       <p-card
        [ngStyle]="{'border-radius':'20px','width':'50%','box-shadow': '0 4px 12px rgba(0, 0, 0, 0.15)'}">
     
-        <div class="flex flex-column gap-2" [formGroup]="loginForm" >
+        <div class="flex flex-column gap-2" [formGroup]="registerForm" >
 
             <div class="flex gap-4 justify-content-center align-items-center">
                 <!-- logo and sign-->
-                 <i style="color: rgb(236, 31, 243);" class="bi bi-unlock2 text-7xl mb-3" ></i>
-                 <h3 style="color: rgb(236, 31, 243);" class="text-7xl">Sign in</h3>
+                 <i style="color: rgb(236, 31, 243);" class="bi bi-balloon-heart text-7xl mb-3" ></i>
+                 <h3 style="color: rgb(236, 31, 243);" class="text-7xl">Sign up</h3>
             </div>
             <input type="text" pInputText placeholder="Email" formControlName="email" />
+            <input type="text" pInputText placeholder="DisplayName" formControlName="displayName" />
             <input type="password" pInputText placeholder="Password" formControlName="password" />
-            <p-button (onClick)="login()" label="LOGIN" [disabled]="loginForm.invalid" severity="secondary"
+            <p-button (onClick)="register()" label="REGISTER" [disabled]="registerForm.invalid" severity="secondary"
              [style]="{'border-radius':'5px','width':'100%','box-shadow': '0 4px 10px rgba(0, 0, 0, 0.2)'}"  />
 
              
             </div>
             <div class="text-center mt-3">
-                <p>Don't have an account? <a routerLink="/main/register">Sign up</a></p> 
+                <p>Already have an account? <a routerLink="/main/login">Sign in</a></p> 
             </div>
     
     
@@ -29,5 +28,4 @@
     
       </p-card>
   </div>
-  
   

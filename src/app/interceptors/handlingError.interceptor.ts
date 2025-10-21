@@ -4,15 +4,15 @@ import { MessageService } from "primeng/api";
 import { catchError, throwError } from "rxjs";
 
 
-export const handlingErrorInterceptor:HttpInterceptorFn=(req, next) => {
-const messagingService=inject(MessageService);
+export const handlingErrorInterceptor: HttpInterceptorFn = (req, next) => {
+  const messagingService = inject(MessageService);
 
 
-return next(req).pipe(
-    catchError((error)=>{
-       
-        
-         let errBody: any = error.error;
+  return next(req).pipe(
+    catchError((error) => {
+
+      
+      let errBody: any = error.error;
 
       try {
         // 
@@ -31,7 +31,7 @@ return next(req).pipe(
       switch (status) {
         case 400:
           //
-          
+
           if (errBody?.details) {
             const details =
               Array.isArray(errBody.details)
@@ -44,7 +44,27 @@ return next(req).pipe(
               summary: 'Validation Error',
               detail: details || errBody.message || 'Bad Request',
             });
-          } else {
+          }
+
+
+          else if (errBody.errors) {
+            const errors = errBody.errors;
+            for (const key in errors) {
+              if (errors.hasOwnProperty(key)) {
+                const fieldErrors = errors[key]; 
+                fieldErrors.forEach((errorMsg: string) => {
+                  messagingService.add({
+                    key: 'tm',
+                    severity: 'error',
+                    summary: 'Validation Error',
+                    detail: `${key}: ${errorMsg}`
+                  });
+                });
+              }
+            }
+
+          }
+          else {
             messagingService.add({
               key: 'tm',
               severity: 'error',
@@ -111,6 +131,6 @@ return next(req).pipe(
 
 
     })
-)
+  )
 
 }

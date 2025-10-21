@@ -12,7 +12,12 @@ export class HomeComponent {
 
   }
 goToActivities(){
-  this.router.navigate(['/main/activities'])
+  const storedUser = localStorage.getItem("userInfo");
+  if(storedUser){
+    this.router.navigate(['/main/activities'])
+  }else{
+    this.router.navigate(['/main/login'])
+  }
 }
 
 }

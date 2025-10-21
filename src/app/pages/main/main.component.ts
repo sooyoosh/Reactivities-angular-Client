@@ -106,6 +106,7 @@ export class MainComponent implements OnInit {
     this.accountService.userInfoSignal.set(null);
     this.accountService.isLoggedIn.next(false);
     localStorage.removeItem("userInfo");    
+    localStorage.removeItem("redirectUrl");    
     this.router.navigate(['/'])    
   }
 

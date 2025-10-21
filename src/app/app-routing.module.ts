@@ -8,18 +8,21 @@ import { ActivitydetailComponent } from './pages/activitydetail/activitydetail.c
 import { CounterComponent } from './pages/counter/counter.component';
 import { NotfoundComponent } from './pages/notfound/notfound.component';
 import { LoginComponent } from './pages/login/login.component';
+import { authGuard } from './guards/auth.guard';
+import { RegisterComponent } from './pages/register/register.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent },
   {path:'main',component:MainComponent,
     children:[
       //{path:'',component:MainComponent},
-      {path:'activities',component:ActivitydashboardComponent},
-      {path:'activities/:id',component:ActivitydetailComponent},
-      {path:'create',component:CreateactivityComponent},
-      {path:'manage/:id',component:CreateactivityComponent},
-      {path:'counter',component:CounterComponent},
+      {path:'activities',component:ActivitydashboardComponent,canActivate:[authGuard]},
+      {path:'activities/:id',component:ActivitydetailComponent,canActivate:[authGuard]},
+      {path:'create',component:CreateactivityComponent,canActivate:[authGuard]},
+      {path:'manage/:id',component:CreateactivityComponent,canActivate:[authGuard]},
+      {path:'counter',component:CounterComponent,canActivate:[authGuard]},
       {path:'login',component:LoginComponent},
+      {path:'register',component:RegisterComponent},
       {path:'not-found',component:NotfoundComponent},
       {path:'**',component:NotfoundComponent}
     ]

@@ -39,7 +39,8 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 import { MapComponent } from './pages/map/map.component';
 import { LoginComponent } from './pages/login/login.component';
 import { MenubarModule } from 'primeng/menubar';
-
+import { FieldsetModule } from 'primeng/fieldset';
+import { RegisterComponent } from './pages/register/register.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { MenubarModule } from 'primeng/menubar';
     LoadingComponent,
     NotfoundComponent,
     MapComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -76,6 +78,7 @@ import { MenubarModule } from 'primeng/menubar';
     ToastModule,
     DropdownModule,
     AutoCompleteModule,
+    FieldsetModule,
     MenubarModule,    
     StoreModule.forRoot({
       counter: counterReducer,

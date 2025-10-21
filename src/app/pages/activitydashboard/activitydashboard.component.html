@@ -1,6 +1,7 @@
 <div class="grid p-8 min-h-full" style="background-color: #eeeeee;">
 
     <div class="col-8">
+        @if(allActivities.length){
 
         <div class="flex flex-column gap-3">
             @for (act of allActivities; track $index) {
@@ -19,7 +20,7 @@
 
                 <div class="flex gap-3">
                     <div class="flex">
-                        <i  class="bi bi-alarm mr-2 text-xl"></i>
+                        <i class="bi bi-alarm mr-2 text-xl"></i>
                         <p>{{act.date}}</p>
                     </div>
                     <div class="flex">
@@ -36,19 +37,19 @@
                     <h3>attendess go here</h3>
                 </div>
                 <!-- <ul>
-                    <li>{{act.title}}</li>
-                    <li>{{act.date}}</li>
-                    <li>{{act.description}}</li>
-                    <li>{{act.city}}/{{act.venue}}</li>
-                </ul> -->
+                        <li>{{act.title}}</li>
+                        <li>{{act.date}}</li>
+                        <li>{{act.description}}</li>
+                        <li>{{act.city}}/{{act.venue}}</li>
+                    </ul> -->
                 <ng-template pTemplate="footer">
                     <div class="flex gap-3 align-items-center ">
                         <!-- <p-chip [label]="act.category" [icon]="chooseIcon(act.category)" /> -->
                         <div class="flex gap-2 align-items-center justify-content-between w-100 ">
                             <p class="pt-3 font-bold">{{act.description}}</p>
                             <!-- <p-button label="DELETE" severity="danger" [disabled]="isSubmitting"
-                                (onClick)="deleteActivity(act.id)"
-                                [style]="{'border-radius':'5px','box-shadow': '0 4px 10px rgba(0, 0, 0, 0.2)'}" /> -->
+                                    (onClick)="deleteActivity(act.id)"
+                                    [style]="{'border-radius':'5px','box-shadow': '0 4px 10px rgba(0, 0, 0, 0.2)'}" /> -->
                             <p-button (onClick)="viewDetail(act)" label="VIEW"
                                 [style]="{'border-radius':'5px','box-shadow': '0 4px 10px rgba(0, 0, 0, 0.2)'}" />
                         </div>
@@ -58,38 +59,39 @@
 
             }
         </div>
+        }@else {
+        
+            <p class="m-0 font-bold">
+                no activities found...
+            </p>
+        
+        }
 
 
     </div>
 
     <div class="col-4">
-        
+
         <div class="flex flex-column gap-3">
 
-            <p-card  [style]="{'border-radius':'15px'}">
-               <div class="flex flex-column">
-                   <div class="flex">
-                       <i class="bi bi-filter text-5xl mr-2"></i>
-                       <h4 class="mt-3 font-bold">Filter By</h4>
-                   </div>
-                   <p-listbox 
-                      [options]="items"  
-                      optionLabel="name" 
-                      [style]="{'width':'15rem','border':'none'}" 
-                      [listStyle]="{'max-height': '220px'}" /> 
-               </div>
-    
+            <p-card [style]="{'border-radius':'15px'}">
+                <div class="flex flex-column">
+                    <div class="flex">
+                        <i class="bi bi-filter text-5xl mr-2"></i>
+                        <h4 class="mt-3 font-bold">Filter By</h4>
+                    </div>
+                    <p-listbox [options]="items" optionLabel="name" [style]="{'width':'15rem','border':'none'}"
+                        [listStyle]="{'max-height': '220px'}" />
+                </div>
+
             </p-card>
 
-            <p-card  [style]="{'border-radius':'15px'}">
+            <p-card [style]="{'border-radius':'15px'}">
                 <div class=" flex justify-content-center">
 
-                    <p-calendar 
-                      class="max-w-full"  
-                      [inline]="true" 
-                      [showWeek]="true" />
+                    <p-calendar class="max-w-full" [inline]="true" [showWeek]="true" />
                 </div>
-    
+
             </p-card>
         </div>
 

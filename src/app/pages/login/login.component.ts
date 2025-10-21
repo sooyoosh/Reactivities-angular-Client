@@ -47,6 +47,11 @@ export class LoginComponent implements OnInit{
    this.accountService.userInfoSignal.set(userInfo);
    localStorage.setItem("userInfo",JSON.stringify(userInfo)) 
    this.accountService.isLoggedIn.next(true);
-   this.router.navigate(['main/activities'])
+   const url=localStorage.getItem("redirectUrl");
+   if(url){
+     this.router.navigate([url])
+   }else{
+     this.router.navigate(['main/activities'])
+   }
   }
 }
