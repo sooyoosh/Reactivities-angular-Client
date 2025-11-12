@@ -8,11 +8,19 @@
             <p-card [style]="{'border-radius':'10px'}">
 
                 <ng-template pTemplate="header">
-                    <div class="flex pl-4 pt-4 align-items-center">
-                        <p-avatar icon="pi pi-user" styleClass="mr-4" size="xlarge" shape="circle" />
-                        <div>
-                            <h3 class="font-bold">{{act.title}}</h3>
-                            <p>hosted by <a class="text-decoration-none">bob</a></p>
+                    <div class="flex justify-content-between">
+
+                        <div class="flex pl-4 pt-4 align-items-center">
+                            <p-avatar icon="pi pi-user" styleClass="mr-4" size="xlarge" shape="circle" />
+                            <div>
+                                <h3 class="font-bold">{{act.title}}</h3>
+                                <p>hosted by 
+                                    <a  class="text-decoration-none">{{act.hostDisplayName}}</a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="pr-4 pt-4 ">
+                             <p-button [label]="act.isHost?'you are hosting':'you are going'" [severity]="act.isHost?'help':'warning'" [style]="{'border-radius':'10px'}" />
                         </div>
                     </div>
                 </ng-template>
@@ -31,10 +39,13 @@
                 </div>
 
                 <div style="background-color: #eeeeee;">
-                    <h3>attendess go here</h3>
-                    <h3>attendess go here</h3>
-                    <h3>attendess go here</h3>
-                    <h3>attendess go here</h3>
+                    <div class="flex gap-2 p-3">
+                        @for (item of act.attendees; track item.id) {
+                            <p-avatar 
+                              size="large"
+                              shape="circle" [image]="item.imageUrl?item.imageUrl:'../../../assets/images/user.png'" />
+                        }
+                    </div>
                 </div>
                 <!-- <ul>
                         <li>{{act.title}}</li>

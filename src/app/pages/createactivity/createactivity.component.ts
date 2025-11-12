@@ -2,12 +2,13 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActivitiesService } from '../../services/activities.service';
-import { IActivities } from '../activitydashboard/activitydashboard.component';
+//import { IActivities } from '../activitydashboard/activitydashboard.component';
 import { DatePipe } from '@angular/common';
 import { catchError, debounceTime, distinctUntilChanged, of, Subject, switchMap, takeUntil, tap } from 'rxjs';
 import { query } from '@angular/animations';
 import { LocationService } from '../../services/location.service';
 import { Root2 } from '../../interfaces/location';
+import { IActivities } from '../../interfaces/IActivity';
 
 @Component({
   selector: 'app-createactivity',

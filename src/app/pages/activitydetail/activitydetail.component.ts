@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { IActivities } from '../activitydashboard/activitydashboard.component';
+//import { IActivities } from '../activitydashboard/activitydashboard.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActivitiesService } from '../../services/activities.service';
+import { IActivities } from '../../interfaces/IActivity';
 
 
 @Component({

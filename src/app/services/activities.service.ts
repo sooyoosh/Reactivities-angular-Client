@@ -1,19 +1,52 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { IActivities } from '../pages/activitydashboard/activitydashboard.component';
-import { firstValueFrom } from 'rxjs';
+//import { IActivities } from '../pages/activitydashboard/activitydashboard.component';
+import { firstValueFrom, map } from 'rxjs';
+import { IActivities } from '../interfaces/IActivity';
+import { IUser } from '../interfaces/user';
+import { AccountService } from './account.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ActivitiesService {
+  userIfo:IUser
+  constructor(private http: HttpClient,private accountService:AccountService) {
+    
+   }
 
-  constructor(private http: HttpClient) { }
+   async gettingUserInfo(){
+     this.userIfo=await this.accountService.UserInfo();
+
+   }
+
+   getAllActivities(){
+    //gettingUserInfo
+    this.gettingUserInfo();
+    //gettingUserInfo
+    return this.http.get<IActivities[]>
+    (environment.apiBaseUrl+'activities',{withCredentials:true})
+    .pipe(
+      map(activities=>
+        activities.map(activity=>{
+          const isHost=activity.hostId === this.userIfo.id;
+          const isGoing = activity.attendees.some(a => a.id === this.userIfo.id);
+          return {
+            ...activity,
+            isHost,
+            isGoing
+          };
+        })
+      )
 
 
-  getAllActivities(){
-    return this.http.get<IActivities[]>(environment.apiBaseUrl+'activities',{withCredentials:true})
+
+
+
+    )
+   
+   
   }
   EditActivity(activity:IActivities){
     return this.http.put(environment.apiBaseUrl+'activities',activity,{withCredentials:true})
@@ -23,7 +56,19 @@ export class ActivitiesService {
   }
   async GetDetailActivity(id:string):Promise<IActivities>{
     return await firstValueFrom(
-      this.http.get<IActivities>(environment.apiBaseUrl+`activities/${id}`,{withCredentials:true})
+      this.http.get<IActivities>
+      (environment.apiBaseUrl+`activities/${id}`,{withCredentials:true})
+      .pipe(
+        map(activity=>{
+          const isHost=activity.hostId === this.userIfo.id;
+          const isGoing = activity.attendees.some(a => a.id === this.userIfo.id);          
+          return{
+            ...activity,
+            isHost,
+            isGoing
+          }
+        })
+      )
     ) 
   }
   CreateActivity(body){

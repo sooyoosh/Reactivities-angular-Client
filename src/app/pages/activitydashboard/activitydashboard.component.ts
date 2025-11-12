@@ -4,18 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import {  ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-export interface IActivities{
-  id: string
-  title: string
-  date: Date
-  description: string
-  category: string
-  isCancelled: boolean
-  city: string
-  venue: string
-  latitude: number
-  longitude: number
-}
+import { IActivities } from '../../interfaces/IActivity';
+
 @Component({
   selector: 'app-activitydashboard',
   templateUrl: './activitydashboard.component.html',
@@ -33,6 +23,7 @@ export class ActivitydashboardComponent implements OnInit{
   activityForm:FormGroup;
   isSubmitting: boolean=false;
   items: any[]=[];
+  
 
   constructor(private activityService:ActivitiesService,
     private fb: FormBuilder,private datePipe: DatePipe,
