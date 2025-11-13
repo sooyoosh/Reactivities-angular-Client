@@ -1,10 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, viewChild } from '@angular/core';
 import { ActivitiesService } from '../../services/activities.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import {  ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { IActivities } from '../../interfaces/IActivity';
+import { IActivities, IProfile } from '../../interfaces/IActivity';
+import { OverlayPanel } from 'primeng/overlaypanel';
 
 @Component({
   selector: 'app-activitydashboard',
@@ -23,7 +24,8 @@ export class ActivitydashboardComponent implements OnInit{
   activityForm:FormGroup;
   isSubmitting: boolean=false;
   items: any[]=[];
-  
+  @ViewChild('overlayPanel') overlayPanel!: OverlayPanel; 
+  overlaydata: IProfile|null;
 
   constructor(private activityService:ActivitiesService,
     private fb: FormBuilder,private datePipe: DatePipe,
@@ -141,6 +143,29 @@ export class ActivitydashboardComponent implements OnInit{
       }
     })
   }
+
+  showOverlay(event,item){
+    this.overlayPanel.show(event);
+    this.overlaydata=item;
+    console.log(item);
+    
+  }
+
+  hideOverlay(){
+    this.overlayPanel.hide()
+    this.overlaydata=null
+  }
+
+getActivityLabel(act: IActivities) {
+  if (act.isHost) return 'You are hosting';
+  if (act.isGoing) return 'You are going';
+  return 'هیچ گوهی نیستی';
+}
+
+
+
+
+
   // checkingObjectValue(obj:Record<string,any>):boolean{
   //   const objWithoutValue
   //   return Object.values(obj).some(value => value == null || value == undefined || value == '')

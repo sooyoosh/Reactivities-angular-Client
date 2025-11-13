@@ -14,13 +14,15 @@
                             <p-avatar icon="pi pi-user" styleClass="mr-4" size="xlarge" shape="circle" />
                             <div>
                                 <h3 class="font-bold">{{act.title}}</h3>
-                                <p>hosted by 
-                                    <a  class="text-decoration-none">{{act.hostDisplayName}}</a>
+                                <p>hosted by
+                                    <a class="text-decoration-none">{{act.hostDisplayName}}</a>
                                 </p>
                             </div>
                         </div>
                         <div class="pr-4 pt-4 ">
-                             <p-button [label]="act.isHost?'you are hosting':'you are going'" [severity]="act.isHost?'help':'warning'" [style]="{'border-radius':'10px'}" />
+                            <p-button  [text]="true"
+                            [label]="getActivityLabel(act)"
+                                [severity]="act.isHost?'help':'warning'"  />
                         </div>
                     </div>
                 </ng-template>
@@ -39,11 +41,12 @@
                 </div>
 
                 <div style="background-color: #eeeeee;">
-                    <div class="flex gap-2 p-3">
+                    <div class="flex gap-3 p-3">
                         @for (item of act.attendees; track item.id) {
-                            <p-avatar 
-                              size="large"
-                              shape="circle" [image]="item.imageUrl?item.imageUrl:'../../../assets/images/user.png'" />
+                        <div (mouseenter)="showOverlay($event,item)" (mouseleave)="hideOverlay()">
+                            <p-avatar [style]="{'cursor': 'pointer'}" size="large" shape="circle"
+                                [image]="item.imageUrl?item.imageUrl:'../../../assets/images/user.png'" />
+                        </div>
                         }
                     </div>
                 </div>
@@ -71,11 +74,11 @@
             }
         </div>
         }@else {
-        
-            <p class="m-0 font-bold">
-                no activities found...
-            </p>
-        
+
+        <p class="m-0 font-bold">
+            no activities found...
+        </p>
+
         }
 
 
@@ -186,3 +189,25 @@
 
 
 </div>
+
+
+
+<!-- overlay panel  -->
+<p-overlayPanel #overlayPanel>
+    <div class="p-2">
+        @if (this.overlaydata) {
+        <div class="flex flex-column gap-3">
+            <img [src]="overlaydata.imageUrl?overlaydata.imageUrl:'../../../assets/images/user.png'"
+                style="width: 200px;height: 200px;">
+            <p>{{this.overlaydata.displayName}}</p>
+        </div>
+        }
+    </div>
+</p-overlayPanel>
+
+
+
+
+
+
+<!-- overlay panel  -->

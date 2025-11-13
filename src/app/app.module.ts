@@ -41,7 +41,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { MenubarModule } from 'primeng/menubar';
 import { FieldsetModule } from 'primeng/fieldset';
 import { RegisterComponent } from './pages/register/register.component';
-
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 @NgModule({
   declarations: [
@@ -79,7 +79,8 @@ import { RegisterComponent } from './pages/register/register.component';
     DropdownModule,
     AutoCompleteModule,
     FieldsetModule,
-    MenubarModule,    
+    MenubarModule,
+    OverlayPanelModule,    
     StoreModule.forRoot({
       counter: counterReducer,
       loading: loadingReducer

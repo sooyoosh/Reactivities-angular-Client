@@ -20,7 +20,7 @@ export class MapComponent implements AfterViewInit{
     }).addTo(map);
 
     L.marker([this.latitude, this.longitude]).addTo(map)
-      .bindPopup('مکان ناناسی تو')
+      .bindPopup('جایی که تو هستی')
       .openPopup();
    }
 }

@@ -41,5 +41,15 @@ ngOnInit(){
   goToEdit(id:string){
     this.router.navigate([`/main/manage/${id}`])
   }
+  updateAttendance(id:string){
+    this.activityService.UpdateAttendance(id).subscribe({
+      next:(res)=>{
+        this.getActivity();
+      },
+      error:(err)=>{
 
+      }
+    })
+    
+  }
 }
