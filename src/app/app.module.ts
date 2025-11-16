@@ -42,6 +42,7 @@ import { MenubarModule } from 'primeng/menubar';
 import { FieldsetModule } from 'primeng/fieldset';
 import { RegisterComponent } from './pages/register/register.component';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
     NotfoundComponent,
     MapComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

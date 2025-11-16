@@ -47,7 +47,10 @@ export class MainComponent implements OnInit {
             },
             {
               label:'My profile',
-              icon:'pi pi-user',  
+              icon:'pi pi-user', 
+              command:()=>{
+                this.goToMyProfile(this.userInfo?.id)
+              } 
             },
             {
               label:'Logout',
@@ -81,6 +84,9 @@ export class MainComponent implements OnInit {
             {
               label:'My profile',
               icon:'pi pi-user',  
+              command:()=>{
+                this.goToMyProfile(this.userInfo?.id)
+              }
             },
             {
               label:'Logout',
@@ -109,5 +115,7 @@ export class MainComponent implements OnInit {
     localStorage.removeItem("redirectUrl");    
     this.router.navigate(['/'])    
   }
-
+  goToMyProfile(userId){
+    this.router.navigate([`main/profiles/${userId}`])
+  }
 }

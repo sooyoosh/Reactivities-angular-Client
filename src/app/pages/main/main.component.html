@@ -1,38 +1,40 @@
-<nav class="navbar navbar-expand-lg custom-navbar" 
-     style="background: linear-gradient(90deg, #0D47A1 0%, #86b4e2ff 100%); color: #fff;">
+<nav class="navbar navbar-expand-lg custom-navbar"
+  style="background: linear-gradient(90deg, #0D47A1 0%, #86b4e2ff 100%); color: #fff;">
   <div class="container-fluid d-flex justify-content-between align-items-center">
-    
-   
+
+
     <div class="d-flex align-items-center gap-2">
       <i class="pi pi-users text-3xl"></i>
       <a class="navbar-brand text-white font-bold text-3xl" href="main">Reactivities</a>
     </div>
 
-    
+
     <div class="d-flex gap-3">
-      <a class=" text-decoration-none route"  
-         routerLink="activities" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
-         ACTIVITIES
+      <a class=" text-decoration-none route" routerLink="activities" routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact:true}">
+        ACTIVITIES
       </a>
-      
-      <a class=" text-decoration-none route"  
-         routerLink="create" routerLinkActive="active">
-         CREATE ACTIVITY
+
+      <a class=" text-decoration-none route" routerLink="create" routerLinkActive="active">
+        CREATE ACTIVITY
       </a>
-      <a class=" text-decoration-none route"  
-         routerLink="counter" routerLinkActive="active">
-         COUNTER
+      <a class=" text-decoration-none route" routerLink="counter" routerLinkActive="active">
+        COUNTER
       </a>
     </div>
-    
+
     <!-- menu -->
-    <div >
+    <div>
 
 
       <ng-container *ngIf="userInfo!=null">
-        <p-menubar [model]="items" />
+        <div class="flex align-items-center">
+          <p-avatar [image]="userInfo.imageUrl?userInfo.imageUrl:'../../../assets/images/user.png'"
+           size="normal" [style]="{ 'margin-bottom': '4px' }" shape="circle"/>
+          <p-menubar [model]="items" class="menubar"/>
+        </div>
       </ng-container>
-      
+
 
 
 
@@ -42,35 +44,23 @@
       <div class="d-flex gap-3">
         <ng-container *ngIf="userInfo==null">
 
-          <a class="text-decoration-none route"  
-             routerLink="login" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
-             LOGIN
+          <a class="text-decoration-none route" routerLink="login" routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact:true}">
+            LOGIN
           </a>
-          
-          <a class=" text-decoration-none route"  
-             routerLink="register" routerLinkActive="active">
-             REGISTER
+
+          <a class=" text-decoration-none route" routerLink="register" routerLinkActive="active">
+            REGISTER
           </a>
         </ng-container>
-  
-    </div>
+
+      </div>
     </div>
     <!-- menu -->
   </div>
 </nav>
 
 <!-- <app-activitydashboard></app-activitydashboard> -->
- <router-outlet></router-outlet>
- <app-loading></app-loading>
- <p-toast position="top-right" key="tm" />
-
-
-
-
-
-
-
-
-
-
-
+<router-outlet></router-outlet>
+<app-loading></app-loading>
+<p-toast position="top-right" key="tm" />

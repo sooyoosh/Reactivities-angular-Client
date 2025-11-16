@@ -60,6 +60,7 @@ export class ActivitydashboardComponent implements OnInit{
   getAllActivities(){
     this.activityService.getAllActivities().subscribe({
       next:(data)=>{
+        
         this.allActivities=data
       },
       error:(err)=>{
@@ -147,7 +148,7 @@ export class ActivitydashboardComponent implements OnInit{
   showOverlay(event,item){
     this.overlayPanel.show(event);
     this.overlaydata=item;
-    console.log(item);
+    
     
   }
 
@@ -162,7 +163,9 @@ getActivityLabel(act: IActivities) {
   return 'هیچ گوهی نیستی';
 }
 
-
+goToProfile(userId:string){
+  this.route.navigate([`main/profiles/${userId}`])
+}
 
 
 

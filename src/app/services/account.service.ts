@@ -21,6 +21,11 @@ export class AccountService {
   Register(body){
     return this.http.post(environment.apiBaseUrl+`Account/register`,body,{withCredentials:true})
   }
+  gettingUserInfo(){
+    return this.http.get<IUser>(environment.apiBaseUrl+`Account/user-info`,{responseType:'json',withCredentials:true}) 
+  }
+
+
   async UserInfo(){
     return firstValueFrom(
       this.http.get<IUser>(environment.apiBaseUrl+`Account/user-info`,{responseType:'json',withCredentials:true})

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 //import { IActivities } from '../pages/activitydashboard/activitydashboard.component';
-import { firstValueFrom, map } from 'rxjs';
+import { firstValueFrom, map, tap } from 'rxjs';
 import { IActivities } from '../interfaces/IActivity';
 import { IUser } from '../interfaces/user';
 import { AccountService } from './account.service';
@@ -16,9 +16,14 @@ export class ActivitiesService {
     
    }
 
-   async gettingUserInfo(){
-     this.userIfo=await this.accountService.UserInfo();
-
+    gettingUserInfo(){
+     //getting userInfo from localstorage is it exist
+    
+    const storedUser = localStorage.getItem("userInfo");
+    if (storedUser) {
+        this.userIfo = JSON.parse(storedUser);
+      }
+    //getting userInfo from localstorage is it exist
    }
 
    getAllActivities(){
@@ -32,10 +37,12 @@ export class ActivitiesService {
         activities.map(activity=>{
           const isHost=activity.hostId === this.userIfo?.id;
           const isGoing = activity.attendees.some(a => a.id === this.userIfo?.id);
+          const host=activity.attendees.find(x=>x.id==activity.hostId)
           return {
             ...activity,
             isHost,
-            isGoing
+            isGoing,
+            hostImageUrl:host?.imageUrl??null
           };
         })
       )
@@ -65,11 +72,13 @@ export class ActivitiesService {
         map(activity=>{
           const isHost=activity.hostId === this.userIfo.id;
           const isGoing = activity.attendees.some(a => a.id === this.userIfo.id);          
+          const host=activity.attendees.find(x=>x.id==activity.hostId)
           return{
             ...activity,
             isHost,
-            isGoing
-          }
+            isGoing,
+            hostImageUrl:host?.imageUrl??null
+          };
         })
       )
     ) 
