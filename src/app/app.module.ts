@@ -43,6 +43,14 @@ import { FieldsetModule } from 'primeng/fieldset';
 import { RegisterComponent } from './pages/register/register.component';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { TabViewModule } from 'primeng/tabview';
+import { ProfilePhotoComponent } from './components/profile-photo/profile-photo.component';
+import { GalleriaModule } from 'primeng/galleria';
+import { ImageUploaderComponent } from './components/image-uploader/image-uploader.component';
+import { FileUploadModule } from 'primeng/fileupload';
+
+
+
 
 @NgModule({
   declarations: [
@@ -58,7 +66,9 @@ import { ProfileComponent } from './pages/profile/profile.component';
     MapComponent,
     LoginComponent,
     RegisterComponent,
-    ProfileComponent
+    ProfileComponent,
+    ProfilePhotoComponent,
+    ImageUploaderComponent
   ],
   imports: [
     BrowserModule,
@@ -82,7 +92,10 @@ import { ProfileComponent } from './pages/profile/profile.component';
     AutoCompleteModule,
     FieldsetModule,
     MenubarModule,
-    OverlayPanelModule,    
+    OverlayPanelModule,
+    GalleriaModule,
+    TabViewModule,
+    FileUploadModule,    
     StoreModule.forRoot({
       counter: counterReducer,
       loading: loadingReducer

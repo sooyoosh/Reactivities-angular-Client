@@ -1,0 +1,16 @@
+<div class=" flex justify-content-center">
+    <p-fileUpload 
+        name="demo[]"
+        (uploadHandler)="uploadHandler($event)"
+        [customUpload]="true"   
+        accept="image/*" 
+        maxFileSize="1000000">
+            <!-- <ng-template pTemplate="content">
+                <ul *ngIf="uploadedFiles.length">
+                    <li *ngFor="let file of uploadedFiles">
+                        {{ file.name }} - {{ file.size }} bytes
+                    </li>
+                </ul>
+            </ng-template> -->
+    </p-fileUpload>
+</div>

@@ -1,20 +1,64 @@
 
-<div class="p-5">
 
-    <p-card >
-        <div class="grid justify-content-between">
-            <div class="col-3 flex gap-4 align-items-center">
-                <img src="../../../assets/images/user.png" class="imageProf">
-                <div class="flex flex-column gap-2">
-                    <h2>Display Name</h2>
-                    <p-button [style]="{'width':'100%','border-radius': '40px'}" 
-                    label="following" [rounded]="true" severity="help" />
+@if (this.profile) {
+
+    <div class="p-5 pb-0">
+    
+        <p-card >
+            <div class="grid justify-content-between">
+                <div class="col-3 flex gap-4 align-items-center">
+                    <img [src]="profile.imageUrl?profile.imageUrl:'../../../assets/images/user.png'"
+                     class="imageProf">
+                    <div class="flex flex-column gap-2">
+                        <h2>{{profile.displayName}}</h2>
+                        <p-button [style]="{'width':'11rem','border-radius': '40px'}" 
+                        label="following" [rounded]="true" severity="help" />
+                    </div>
+                </div>
+                <div class="col-3 flex flex-column">
+                    <div class="grid pl-3">
+                        <div class="col-6">
+                            <h3 class="font-bold">Followers</h3>
+                            <h1>5</h1>
+                        </div>
+                        <div class="col-6">
+                            <h3 class="font-bold">Following</h3>
+                            <h1>42</h1>
+                        </div>
+                    </div>
+                    <hr>
+                    <p-button [style]="{'width':'100%','border-radius': '15px'}" 
+                        label="UNFOLLOW" [rounded]="true" severity="secondary" />
                 </div>
             </div>
-            <div class="col-3">
-                <h2>saalam</h2>
-            </div>
-        </div>
-    </p-card>
-</div>
+        </p-card>
+    
+    </div>
+    <div class="p-5">
+        <p-tabView>
+        <p-tabPanel header="ABOUT">
+            
+        </p-tabPanel>
+        <!-- ------------------------------------------- -->
+        <p-tabPanel header="PHOTOS">
+            <app-profile-photo [photos]="photos" [isCurrentUser]="isCurrentUser"></app-profile-photo>
+        </p-tabPanel>
+        <!-- ------------------------------------------- -->
+        <p-tabPanel header="EVENTS">
+            
+        </p-tabPanel>
+        <!-- ------------------------------------------- -->
+        <p-tabPanel header="FOLLOWERS">
+            
+        </p-tabPanel>
+        <!-- ------------------------------------------- -->
+        <p-tabPanel header="FOLLOWING">
+            
+        </p-tabPanel>
+    </p-tabView>
+    </div>
+}@else {
+    <h2>there is no profile to show!!</h2>
+}
+
 
