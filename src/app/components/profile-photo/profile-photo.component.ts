@@ -10,7 +10,7 @@ import { ProfileService } from '../../services/profile.service';
 })
 export class ProfilePhotoComponent implements OnInit{
   
-  @Input() photos:IPhoto[];
+  @Input() photos:IPhoto[]|null;
   @Input() isCurrentUser:boolean;
    @Output() emitSuccessImageForProfile = new EventEmitter();
   croppedImage:any='';
@@ -67,6 +67,7 @@ export class ProfilePhotoComponent implements OnInit{
   deletePhoto(photoId){
     this.pofileService.DeletePhoto(photoId).subscribe((data)=>{
       this.emitSuccessImageForProfile.emit('success');
+      if(this.photos)
       this.photos.filter(x=>x.id!==photoId)
     })
   }

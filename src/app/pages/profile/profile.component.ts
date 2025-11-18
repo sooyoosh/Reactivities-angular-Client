@@ -13,7 +13,7 @@ import { IUser } from '../../interfaces/user';
 export class ProfileComponent implements OnInit{
   userId:string;
   profile:IProfile;
-  photos:IPhoto[];
+  photos:IPhoto[]|null;
   userInfo: IUser;
   isCurrentUser: boolean;
  constructor(private route:ActivatedRoute,private profileService:ProfileService){
@@ -36,6 +36,7 @@ export class ProfileComponent implements OnInit{
       next:(data:any)=>{
         this.profile=data;
         this.profileService.newUserInfo.next(data);
+        this.photos=null
         this.getPhotos();
       }
     })

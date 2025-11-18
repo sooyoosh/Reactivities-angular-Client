@@ -1,8 +1,8 @@
-@if(photos && isCurrentUser){
+@if(photos ){
 
 <div class="flex flex-column gap-2 align-items-start">
 
-    <div>
+    <div *ngIf="isCurrentUser">
         <p-button (onClick)="toggleEditeMode()" [style]="{'width':'17rem','border-radius': '15px'}"
             [label]="editMode?'CANCLE':'ADD PHOTO'" [rounded]="true" severity="secondary" />
     </div>
@@ -12,7 +12,7 @@
         [containerStyle]="{ 'max-width': '640px' }" [numVisible]="1">
         <ng-template pTemplate="item" let-item style="position: relative;">
             <img [src]="item.url" style="width: 100%;" />
-            <div class="buttonImage">
+            <div class="buttonImage" *ngIf="isCurrentUser">
                 <button class="setMainButton" (click)="setMainPhoto(item.id)">Set Main <i class="pi pi-file-check"></i></button>
                 <button class="deleteButton" (click)="deletePhoto(item.id)">Delete <i class="pi pi-file-excel"></i></button>
             </div>
