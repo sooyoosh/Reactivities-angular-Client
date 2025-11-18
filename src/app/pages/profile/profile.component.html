@@ -41,7 +41,7 @@
         </p-tabPanel>
         <!-- ------------------------------------------- -->
         <p-tabPanel header="PHOTOS">
-            <app-profile-photo [photos]="photos" [isCurrentUser]="isCurrentUser"></app-profile-photo>
+            <app-profile-photo [photos]="photos" [isCurrentUser]="isCurrentUser" (emitSuccessImageForProfile)="emitSuccessImageForProfile($event)"></app-profile-photo>
         </p-tabPanel>
         <!-- ------------------------------------------- -->
         <p-tabPanel header="EVENTS">

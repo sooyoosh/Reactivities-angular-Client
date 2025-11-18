@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IPhoto } from '../../interfaces/IPhoto';
 import { IUser } from '../../interfaces/user';
+import { ProfileService } from '../../services/profile.service';
 
 @Component({
   selector: 'app-profile-photo',
@@ -11,6 +12,8 @@ export class ProfilePhotoComponent implements OnInit{
   
   @Input() photos:IPhoto[];
   @Input() isCurrentUser:boolean;
+   @Output() emitSuccessImageForProfile = new EventEmitter();
+  croppedImage:any='';
   responsiveOptions:any[]|undefined
   userInfo: IUser;
   editMode:boolean=false;     
@@ -18,10 +21,10 @@ export class ProfilePhotoComponent implements OnInit{
     
 
 
-  constructor(){}
+  constructor(private pofileService:ProfileService){}
   
   ngOnInit() {
-
+  
      this.responsiveOptions = [
             {
                 breakpoint: '1024px',
@@ -41,9 +44,19 @@ export class ProfilePhotoComponent implements OnInit{
   
 
   toggleEditeMode(){
-    this.editMode=!this.editMode
+    this.editMode=!this.editMode;
+    this.croppedImage=''
   }  
 
-
-
+  emitCropper(e){
+    this.croppedImage=e;
+  }
+  emitSuccessImage(event){
+    if(event=='success')
+      {
+        this.editMode=false;
+        this.emitSuccessImageForProfile.emit('success')
+      }
+  }
+ 
 }

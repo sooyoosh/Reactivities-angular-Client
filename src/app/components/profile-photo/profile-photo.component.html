@@ -3,33 +3,39 @@
 <div class="flex flex-column gap-2 align-items-start">
 
     <div>
-        <p-button (onClick)="toggleEditeMode()" 
-        [style]="{'width':'17rem','border-radius': '15px'}" 
-                        [label]="editMode?'CANCLE':'ADD PHOTO'" [rounded]="true" severity="secondary" />
+        <p-button (onClick)="toggleEditeMode()" [style]="{'width':'17rem','border-radius': '15px'}"
+            [label]="editMode?'CANCLE':'ADD PHOTO'" [rounded]="true" severity="secondary" />
     </div>
     @if (!editMode) {
 
-        <p-galleria
-            [style]="{'width':'17rem'}" 
-            [value]="photos" 
-            [responsiveOptions]="responsiveOptions" 
-            [containerStyle]="{ 'max-width': '640px' }" 
-            [numVisible]="5">
-                <ng-template pTemplate="item" let-item>
-                    <img [src]="item.url" style="width: 100%;" />
-                </ng-template>
-                <ng-template pTemplate="thumbnail" let-item>
-                    <div class="grid grid-nogutter justify-content-center">
-                        <img [src]="item.url" style="width: 5rem;"/>
-                    </div>
-                </ng-template>
-        </p-galleria>
+    <p-galleria [style]="{'width':'30rem'}" [value]="photos" [responsiveOptions]="responsiveOptions"
+        [containerStyle]="{ 'max-width': '640px' }" [numVisible]="3">
+        <ng-template pTemplate="item" let-item>
+            <img [src]="item.url" style="width: 100%;" />
+        </ng-template>
+        <ng-template pTemplate="thumbnail" let-item>
+            <div class="grid grid-nogutter justify-content-center">
+                <img [src]="item.url" style="width: 5rem;" />
+            </div>
+        </ng-template>
+    </p-galleria>
     }@else {
-        <app-image-uploader></app-image-uploader>
+    <div class="grid gap-3 w-full">
+        <div class="col-6">
+            <app-image-uploader (emitCropper)="emitCropper($event)" (emitSuccessImage)="emitSuccessImage($event)" style="width:100%;"></app-image-uploader>
+        </div>
+
+        <div class="col-4">
+            <div *ngIf="croppedImage">
+                <h4>Preview:</h4>
+                <img [src]="croppedImage" class="preview-img" />
+            </div>
+        </div>
+    </div>
     }
 </div>
 
 
 }@else {
-    <h2>there is no photo here to showing...</h2>
+<h2>there is no photo here to showing...</h2>
 }

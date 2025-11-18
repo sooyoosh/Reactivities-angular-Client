@@ -25,7 +25,10 @@ export class ProfileComponent implements OnInit{
     this.userId=data['id']
     this.getProfile();
     this.gettingUser();
-   }) 
+   }) ;
+  //  this.profileService.isUploadSuccess$.subscribe((data)=>{
+  //   this.getPhotos();
+  //  })
   }
 
   getProfile(){
@@ -40,12 +43,12 @@ export class ProfileComponent implements OnInit{
     this.profileService.GetPhotos(this.userId).subscribe({
       next:(data)=>{
         this.photos=data;
+        this.profileService.isUploadSuccess.next(false);
       },
       error:(err)=>{
         console.log(err);
         
       }
-
     })
   }
    gettingUser(){
@@ -59,5 +62,7 @@ export class ProfileComponent implements OnInit{
       
   }
    
-
+emitSuccessImageForProfile(event){
+  if(event=='success') this.getPhotos();
+}
 }

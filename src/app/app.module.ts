@@ -48,8 +48,8 @@ import { ProfilePhotoComponent } from './components/profile-photo/profile-photo.
 import { GalleriaModule } from 'primeng/galleria';
 import { ImageUploaderComponent } from './components/image-uploader/image-uploader.component';
 import { FileUploadModule } from 'primeng/fileupload';
-
-
+import { ImageCropperComponent } from 'ngx-image-cropper';
+import { StepperModule } from 'primeng/stepper';
 
 
 @NgModule({
@@ -95,7 +95,9 @@ import { FileUploadModule } from 'primeng/fileupload';
     OverlayPanelModule,
     GalleriaModule,
     TabViewModule,
-    FileUploadModule,    
+    FileUploadModule, 
+    ImageCropperComponent,
+    StepperModule,   
     StoreModule.forRoot({
       counter: counterReducer,
       loading: loadingReducer
