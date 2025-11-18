@@ -3,6 +3,8 @@ import { AccountService } from '../../services/account.service';
 import { IUser } from '../../interfaces/user';
 import { MenuItem } from 'primeng/api';
 import { Route, Router } from '@angular/router';
+import { ProfileService } from '../../services/profile.service';
+import { IProfile } from '../../interfaces/IActivity';
 
 @Component({
   selector: 'app-main',
@@ -11,12 +13,12 @@ import { Route, Router } from '@angular/router';
 })
 export class MainComponent implements OnInit {
   createActivity: boolean = false;
-  userInfo: IUser | null
+  userInfo: IUser|IProfile | null
   items: MenuItem[] | undefined;
 
 
 
-  constructor(public accountService: AccountService,private router:Router) {
+  constructor(public accountService: AccountService,private router:Router,private profileService:ProfileService) {
   }
   ngOnInit() {
     //getting userInfo from localstorage is it exist
@@ -26,7 +28,18 @@ export class MainComponent implements OnInit {
         this.userInfo = JSON.parse(storedUser);
       }
     //getting userInfo from localstorage is it exist
+    //if userInfo changed we get it from local storage
+      this.profileService.newUserInfo$.subscribe((data)=>{
+        
+        if(data){
 
+          if(this.userInfo?.id===data?.['id']){
+            this.userInfo=data;
+            localStorage.setItem("userInfo",JSON.stringify(data))
+          }
+        }
+      })
+    //if userInfo changed we get it from local storage
 
 
     this.accountService.isLoggedIn.subscribe((data) => {
@@ -111,6 +124,7 @@ export class MainComponent implements OnInit {
     await this.accountService.Logout();
     this.accountService.userInfoSignal.set(null);
     this.accountService.isLoggedIn.next(false);
+    this.profileService.newUserInfo.next(null);
     localStorage.removeItem("userInfo");    
     localStorage.removeItem("redirectUrl");    
     this.router.navigate(['/'])    

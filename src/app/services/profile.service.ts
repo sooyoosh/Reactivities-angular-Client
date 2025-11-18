@@ -8,8 +8,8 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class ProfileService {
-  isUploadSuccess=new BehaviorSubject<boolean>(false);
-  isUploadSuccess$=this.isUploadSuccess.asObservable();
+  newUserInfo=new BehaviorSubject<any>(null);
+  newUserInfo$=this.newUserInfo.asObservable();
   constructor(private http: HttpClient) { }
 
   GetProfile(userId:string){
@@ -20,5 +20,8 @@ export class ProfileService {
   }
   AddPhoto(formData){
     return this.http.post(environment.apiBaseUrl+`Profiles/add-photo`,formData,{withCredentials:true})
+  }
+  SetMainPhoto(photoId){
+    return this.http.put(environment.apiBaseUrl+`Profiles/${photoId}/setMain`,{},{withCredentials:true})
   }
 }

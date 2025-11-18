@@ -9,13 +9,14 @@
     @if (!editMode) {
 
     <p-galleria [style]="{'width':'30rem'}" [value]="photos" [responsiveOptions]="responsiveOptions"
-        [containerStyle]="{ 'max-width': '640px' }" [numVisible]="3">
-        <ng-template pTemplate="item" let-item>
+        [containerStyle]="{ 'max-width': '640px' }" [numVisible]="1">
+        <ng-template pTemplate="item" let-item style="position: relative;">
             <img [src]="item.url" style="width: 100%;" />
+           <button class="setMainButton" (click)="setMainPhoto(item.id)">Set Main</button>
         </ng-template>
         <ng-template pTemplate="thumbnail" let-item>
             <div class="grid grid-nogutter justify-content-center">
-                <img [src]="item.url" style="width: 5rem;" />
+                <img [src]="item.url"  style="width: 5rem;" />
             </div>
         </ng-template>
     </p-galleria>

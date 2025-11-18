@@ -58,5 +58,11 @@ export class ProfilePhotoComponent implements OnInit{
         this.emitSuccessImageForProfile.emit('success')
       }
   }
+  setMainPhoto(photoId){
+     this.pofileService.SetMainPhoto(photoId).subscribe((data)=>{
+      this.emitSuccessImageForProfile.emit('success')
+     })
+    
+  }
  
 }
