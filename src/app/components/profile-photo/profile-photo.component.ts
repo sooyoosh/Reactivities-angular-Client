@@ -64,5 +64,11 @@ export class ProfilePhotoComponent implements OnInit{
      })
     
   }
+  deletePhoto(photoId){
+    this.pofileService.DeletePhoto(photoId).subscribe((data)=>{
+      this.emitSuccessImageForProfile.emit('success');
+      this.photos.filter(x=>x.id!==photoId)
+    })
+  }
  
 }

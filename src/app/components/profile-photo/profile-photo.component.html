@@ -12,7 +12,10 @@
         [containerStyle]="{ 'max-width': '640px' }" [numVisible]="1">
         <ng-template pTemplate="item" let-item style="position: relative;">
             <img [src]="item.url" style="width: 100%;" />
-           <button class="setMainButton" (click)="setMainPhoto(item.id)">Set Main</button>
+            <div class="buttonImage">
+                <button class="setMainButton" (click)="setMainPhoto(item.id)">Set Main <i class="pi pi-file-check"></i></button>
+                <button class="deleteButton" (click)="deletePhoto(item.id)">Delete <i class="pi pi-file-excel"></i></button>
+            </div>
         </ng-template>
         <ng-template pTemplate="thumbnail" let-item>
             <div class="grid grid-nogutter justify-content-center">

@@ -24,4 +24,7 @@ export class ProfileService {
   SetMainPhoto(photoId){
     return this.http.put(environment.apiBaseUrl+`Profiles/${photoId}/setMain`,{},{withCredentials:true})
   }
+  DeletePhoto(photoId){
+    return this.http.delete(environment.apiBaseUrl+`Profiles/${photoId}/photos`,{withCredentials:true})
+  }
 }

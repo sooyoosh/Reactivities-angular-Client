@@ -1,7 +1,14 @@
-.setMainButton {
+
+.buttonImage{
+    display: flex;
     position: absolute;
     bottom: 10px;
-    left: 50%;
+    right: 17%;
+    gap: 2rem;
+}
+
+.setMainButton {
+   
     transform: translateX(-50%);
     
     padding: 0.5rem 1.2rem;
@@ -27,5 +34,34 @@
 }
 
 .setMainButton:active {
+    transform: translateX(-50%) scale(0.97);
+}
+.deleteButton {
+   
+    transform: translateX(-50%);
+    
+    padding: 0.5rem 1.2rem;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #fff;
+
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.deleteButton:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.45);
+    transform: translateX(-50%) scale(1.05);
+}
+
+.deleteButton:active {
     transform: translateX(-50%) scale(0.97);
 }
