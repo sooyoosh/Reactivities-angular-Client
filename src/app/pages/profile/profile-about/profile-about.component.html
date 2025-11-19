@@ -1,0 +1,18 @@
+<div class="nav flex justify-content-between">
+    <h3 class="font-bold">About {{profile.displayName}}</h3>
+    <p-button (onClick)="toggleEdite()" [style]="{'width':'100%','border-radius': '15px'}"
+     [label]="editProfileMode?'CANCEL':'EDIT PROFILE'" [rounded]="true"
+        severity="secondary" />
+</div>
+<hr>
+@if (!editProfileMode) {
+    <div>
+        <p>{{profile.bio?profile.bio:'no description yet'}}</p>
+    </div>
+}@else {
+    <div class="flex flex-column gap-3">
+        <input type="text" [(ngModel)]="displayName" pInputText placeholder=" displayName" />
+        <input type="text" [(ngModel)]="bio" pInputText placeholder=" bio"/>
+        <p-button [disabled]="this.disableButton()" (onClick)="updateProfile()" [style]="{'width':'12rem','border-radius': '15px'}" severity="info" icon="pi pi-check" label="UPDATE"></p-button>
+    </div>
+}

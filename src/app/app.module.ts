@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //
 import { ButtonModule } from 'primeng/button';
 import { ActivitydashboardComponent } from './pages/activitydashboard/activitydashboard.component';
@@ -50,6 +50,8 @@ import { ImageUploaderComponent } from './components/image-uploader/image-upload
 import { FileUploadModule } from 'primeng/fileupload';
 import { ImageCropperComponent } from 'ngx-image-cropper';
 import { StepperModule } from 'primeng/stepper';
+import { ProfileAboutComponent } from './pages/profile/profile-about/profile-about.component';
+
 
 
 @NgModule({
@@ -68,11 +70,13 @@ import { StepperModule } from 'primeng/stepper';
     RegisterComponent,
     ProfileComponent,
     ProfilePhotoComponent,
-    ImageUploaderComponent
+    ImageUploaderComponent,
+    ProfileAboutComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
     AppRoutingModule,
     ButtonModule,
     HttpClientModule,

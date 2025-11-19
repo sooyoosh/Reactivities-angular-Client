@@ -71,4 +71,9 @@ emitSuccessImageForProfile(event){
     
   }
 }
+emmitSuccessEditProfile(event){
+   if(event=='success') {
+    this.getProfile();
+  }
+}
 }

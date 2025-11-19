@@ -37,7 +37,7 @@
     <div class="p-5">
         <p-tabView>
         <p-tabPanel header="ABOUT">
-            
+            <app-profile-about (emmitSuccessEditProfile)="emmitSuccessEditProfile($event)" [profile]="this.profile"></app-profile-about>
         </p-tabPanel>
         <!-- ------------------------------------------- -->
         <p-tabPanel header="PHOTOS">
