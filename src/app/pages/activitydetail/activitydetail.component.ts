@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 //import { IActivities } from '../activitydashboard/activitydashboard.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActivitiesService } from '../../services/activities.service';
 import { IActivities } from '../../interfaces/IActivity';
+import { CommentServiceService } from '../../services/comment-service.service';
+import { Subscription } from 'rxjs';
+import { IComment } from '../../interfaces/IComment';
 
 
 @Component({
@@ -10,21 +13,35 @@ import { IActivities } from '../../interfaces/IActivity';
   templateUrl: './activitydetail.component.html',
   styleUrl: './activitydetail.component.css'
 })
-export class ActivitydetailComponent implements OnInit{
+export class ActivitydetailComponent implements OnInit,OnDestroy{
 activityDetail:IActivities
 activityId: string;
 isCanclled:boolean=false;
 isGoing:boolean=false;
 mapOpen:boolean=false;
+sub!: Subscription;
+comments: IComment[] = [];
+newComment:string|null
   // activity: IActivities;
-constructor(private route:ActivatedRoute,private router:Router,private activityService:ActivitiesService){}
+constructor(private route:ActivatedRoute,private router:Router,
+  private activityService:ActivitiesService,private commentService:CommentServiceService){}
   
-
-ngOnInit(){
+  
+  ngOnInit(){
     this.route.params.subscribe((obj)=>{
       this.activityId=obj['id'];
       this.getActivity();
     })
+    //web socket
+    this.commentService.startConnection(this.activityId);
+    
+    this.sub = this.commentService.comments$.subscribe(x => {
+      this.comments = x;
+    });
+  }
+  ngOnDestroy() {
+    this.commentService.stopConnection();
+    this.sub.unsubscribe();
   }
 
   async getActivity(){
@@ -52,4 +69,13 @@ ngOnInit(){
     })
     
   }
+  sendComment(){
+     this.commentService.sendComment({
+      activityId: this.activityId,
+      body: this.newComment
+    });
+    this.newComment=null
+   
+  }
+  
 }

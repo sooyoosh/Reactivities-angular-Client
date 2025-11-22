@@ -72,14 +72,22 @@
                         </div>
                     </p-toolbar>
                     <div class="flex flex-column">
-                        <input placeholder="Enter your comment" type="text" pInputText class="w-100 mt-2 p-3" />
-                         <div class="flex pl-4 pt-4 align-items-center">
-                        <p-avatar icon="pi pi-user" styleClass="mr-4" size="xlarge" shape="circle" />
-                        <div>
-                            <h4 class="font-bold" style="color: blue;">Bob</h4>
-                            <p>comments goes here</p>
+                        <div class="flex align-items-center gap-2">
+                            <input placeholder="Enter your comment" [(ngModel)]="newComment" 
+                             type="text" pInputText class="w-100 mt-2 p-3" />
+                            <p-button icon="pi pi-send" (onClick)="sendComment()" [disabled]="!newComment"
+                             label="SEND" class="mt-2" [style]="{'border-radius':'10px'}" />   
                         </div>
-                    </div>
+                        @for (comment of comments; track comment.id) {
+                            <div class="flex pl-4 pt-4 align-items-center">
+                            <p-avatar  styleClass="mr-4" size="xlarge" shape="circle"
+                            [image]="comment.imageUrl?comment.imageUrl:'../../../assets/images/user.png'" />
+                            <div>
+                                <h4 class="font-bold" style="color: blue;">{{comment.displayName}}</h4>
+                                <p>{{comment.body}}</p>
+                            </div>
+                            </div>
+                        }
                     </div>
                 </p-card>
             </div>
