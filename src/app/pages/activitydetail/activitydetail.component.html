@@ -104,15 +104,15 @@
                     @for (item of activityDetail.attendees; track item.id) {
 
                         <div class="flex mt-3 justify-content-between">
-                               <div class="flex">
+                               <div class="flex align-items-center">
                                     <p-avatar [image]="item.imageUrl?item.imageUrl:'../../../assets/images/user.png'"  styleClass="mr-2" size="xlarge" shape="circle" />
                                     <h4 class="font-bold mt-3">{{item.displayName}}</h4>
+                                    <p *ngIf="item.following" class="font-bold mt-4 ml-3" style="color: #F59E0B;">following</p>
                                 </div>
                                 <div class="flex flex-column gap-1" *ngIf="activityDetail.hostId===item.id">
                                     <p-button label="Host" severity="warning" [style]="{'border-radius':'5px','box-shadow': '0 4px 10px rgba(0, 0, 0, 0.2)'}" />
-                                    <p class="font-bold" style="color: #F59E0B;">following</p>
-                                   
-                               </div>
+                                    
+                                </div>
                            </div>
                     }
 

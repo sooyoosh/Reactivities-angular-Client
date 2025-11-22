@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProfileService } from '../../services/profile.service';
 import { IProfile } from '../../interfaces/IActivity';
 import { IPhoto } from '../../interfaces/IPhoto';
 import { IUser } from '../../interfaces/user';
+import { ProfileFollowingComponent } from './profile-following/profile-following.component';
 
 @Component({
   selector: 'app-profile',
@@ -16,6 +17,8 @@ export class ProfileComponent implements OnInit{
   photos:IPhoto[]|null;
   userInfo: IUser;
   isCurrentUser: boolean;
+  @ViewChild('followingListChild') followingListChild!: ProfileFollowingComponent;
+  @ViewChild('followerListChild') followerListChild!: ProfileFollowingComponent;
  constructor(private route:ActivatedRoute,private profileService:ProfileService){
 
  }
@@ -75,5 +78,18 @@ emmitSuccessEditProfile(event){
    if(event=='success') {
     this.getProfile();
   }
+}
+followToggle(targetUserId){
+  this.profileService.FollowProfile(targetUserId).subscribe({
+    next:(data)=>{
+      this.getProfile();
+      this.followerListChild.getFollowList();
+      this.followingListChild.getFollowList();
+    },
+    error:(err)=>{
+      
+    }
+  })
+  
 }
 }

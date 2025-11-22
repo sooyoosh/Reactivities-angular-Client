@@ -51,6 +51,7 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { ImageCropperComponent } from 'ngx-image-cropper';
 import { StepperModule } from 'primeng/stepper';
 import { ProfileAboutComponent } from './pages/profile/profile-about/profile-about.component';
+import { ProfileFollowingComponent } from './pages/profile/profile-following/profile-following.component';
 
 
 
@@ -71,7 +72,8 @@ import { ProfileAboutComponent } from './pages/profile/profile-about/profile-abo
     ProfileComponent,
     ProfilePhotoComponent,
     ImageUploaderComponent,
-    ProfileAboutComponent
+    ProfileAboutComponent,
+    ProfileFollowingComponent
   ],
   imports: [
     BrowserModule,

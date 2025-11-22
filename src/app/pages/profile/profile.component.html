@@ -11,7 +11,7 @@
                      class="imageProf">
                     <div class="flex flex-column gap-2">
                         <h2>{{profile.displayName}}</h2>
-                        <p-button [style]="{'width':'11rem','border-radius': '40px'}" 
+                        <p-button *ngIf="profile.following" [style]="{'width':'11rem','border-radius': '40px'}" 
                         label="following" [rounded]="true" severity="help" />
                     </div>
                 </div>
@@ -19,16 +19,16 @@
                     <div class="grid pl-3">
                         <div class="col-6">
                             <h3 class="font-bold">Followers</h3>
-                            <h1>5</h1>
+                            <h1>{{profile.followersCount}}</h1>
                         </div>
                         <div class="col-6">
                             <h3 class="font-bold">Following</h3>
-                            <h1>42</h1>
+                            <h1>{{profile.followingCount}}</h1>
                         </div>
                     </div>
                     <hr>
-                    <p-button [style]="{'width':'100%','border-radius': '15px'}" 
-                        label="UNFOLLOW" [rounded]="true" severity="secondary" />
+                    <p-button [style]="{'width':'100%','border-radius': '15px'}" (onClick)="followToggle(profile.id)" 
+                        [label]="profile.following?'UNFOLLOW':'FOLLOW'" [rounded]="true" severity="secondary" />
                 </div>
             </div>
         </p-card>
@@ -49,11 +49,11 @@
         </p-tabPanel>
         <!-- ------------------------------------------- -->
         <p-tabPanel header="FOLLOWERS">
-            
+            <app-profile-following [predicate]="'followers'" #followerListChild [userId]="profile.id"></app-profile-following>
         </p-tabPanel>
         <!-- ------------------------------------------- -->
         <p-tabPanel header="FOLLOWING">
-            
+            <app-profile-following [predicate]="'following'" #followingListChild [userId]="profile.id"></app-profile-following>
         </p-tabPanel>
     </p-tabView>
     </div>

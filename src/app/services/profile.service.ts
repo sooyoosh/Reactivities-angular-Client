@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { IPhoto } from '../interfaces/IPhoto';
@@ -29,5 +29,13 @@ export class ProfileService {
   }
   EditProfile(body){
     return this.http.put(environment.apiBaseUrl+`Profiles/editProfile`,body,{withCredentials:true})
+  }
+  FollowProfile(userId:string){
+    return this.http.post(environment.apiBaseUrl+`Profiles/${userId}/follow`,{},{withCredentials:true})
+  }
+  FollowList(userId:string,predicate:string){
+    let query=new HttpParams();
+    query=query.append("predicate",predicate)
+    return this.http.get(environment.apiBaseUrl+`Profiles/${userId}/follow-list`,{withCredentials:true,params:query})
   }
 }

@@ -1,0 +1,22 @@
+<div class="w-100 flex flex-wrap gap-5">
+    @for (profile of usersCommunity; track $index) {
+    <div style="width: 15rem;">
+        <p-card [header]="profile.displayName" [style]="{'padding':'1rem'}">
+            <ng-template pTemplate="header">
+                <img alt="Card" style="border-radius: 10px;"
+                 [src]="profile.imageUrl?profile.imageUrl:'../../../../assets/images/user.png'" />
+            </ng-template>
+            <p>
+                {{profile.bio?profile.bio:'there is no bio yet'}}
+            </p>
+            <hr>
+            <ng-template pTemplate="footer">
+                <div class="flex gap-2">
+                    <i class="pi pi-user"></i>
+                    {{profile.followersCount}} Followers
+                </div>
+            </ng-template>
+        </p-card>
+    </div>
+    }
+</div>
