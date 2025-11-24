@@ -52,6 +52,7 @@ import { ImageCropperComponent } from 'ngx-image-cropper';
 import { StepperModule } from 'primeng/stepper';
 import { ProfileAboutComponent } from './pages/profile/profile-about/profile-about.component';
 import { ProfileFollowingComponent } from './pages/profile/profile-following/profile-following.component';
+import { InfiniteScrollDirective } from './directives/infinite-scroll.directive';
 
 
 
@@ -73,7 +74,8 @@ import { ProfileFollowingComponent } from './pages/profile/profile-following/pro
     ProfilePhotoComponent,
     ImageUploaderComponent,
     ProfileAboutComponent,
-    ProfileFollowingComponent
+    ProfileFollowingComponent,
+    InfiniteScrollDirective
   ],
   imports: [
     BrowserModule,

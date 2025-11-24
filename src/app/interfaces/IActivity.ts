@@ -28,3 +28,8 @@ export interface IProfile{
     followersCount:number
     followingCount:number
 }
+//cursor pagedlist
+export interface IPagedList<T,TCursor>{
+  items:T[]
+  nextCursor:TCursor
+}

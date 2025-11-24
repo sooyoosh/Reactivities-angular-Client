@@ -1,9 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 //import { IActivities } from '../pages/activitydashboard/activitydashboard.component';
 import { firstValueFrom, map, tap } from 'rxjs';
-import { IActivities } from '../interfaces/IActivity';
+import { IActivities, IPagedList } from '../interfaces/IActivity';
 import { IUser } from '../interfaces/user';
 import { AccountService } from './account.service';
 
@@ -26,29 +26,48 @@ export class ActivitiesService {
     //getting userInfo from localstorage is it exist
    }
 
-   getAllActivities(){
+   getAllActivities(cursor?: string | null){
+     let params = new HttpParams();
+    if (cursor) params = params.append('cursor', cursor);
+
+
     //gettingUserInfo
     this.gettingUserInfo();
     //gettingUserInfo
-    return this.http.get<IActivities[]>
-    (environment.apiBaseUrl+'activities',{withCredentials:true})
+    return this.http.get<IPagedList<IActivities,string|null>>
+    (environment.apiBaseUrl+'activities',{params,withCredentials:true})
     .pipe(
-      map(activities=>
-        activities.map(activity=>{
-          const isHost=activity.hostId === this.userIfo?.id;
-          const isGoing = activity.attendees.some(a => a.id === this.userIfo?.id);
-          const host=activity.attendees.find(x=>x.id==activity.hostId)
-          return {
-            ...activity,
-            isHost,
-            isGoing,
-            hostImageUrl:host?.imageUrl??null
-          };
-        })
-      )
+      // map(result =>
+      //   result .items.map(activity=>{
+      //     const isHost=activity.hostId === this.userIfo?.id;
+      //     const isGoing = activity.attendees.some(a => a.id === this.userIfo?.id);
+      //     const host=activity.attendees.find(x=>x.id==activity.hostId)
+      //     return {
+      //       ...activity,
+      //       isHost,
+      //       isGoing,
+      //       hostImageUrl:host?.imageUrl??null
+      //     };
+      //   }),
+      //   nextCursor: result.ne
+      // )
 
 
+map(result => ({
+      items: result.items.map(activity => {
+        const isHost = activity.hostId === this.userIfo?.id;
+        const isGoing = activity.attendees.some(a => a.id === this.userIfo?.id);
+        const host = activity.attendees.find(x => x.id === activity.hostId);
 
+        return {
+          ...activity,
+          isHost,
+          isGoing,
+          hostImageUrl: host?.imageUrl ?? null
+        };
+      }),
+      nextCursor: result.nextCursor
+    }))
 
 
     )

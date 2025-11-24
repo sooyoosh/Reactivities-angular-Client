@@ -20,6 +20,9 @@ a.route.active {
               0 2px 6px rgba(0, 0, 0, 0.18);
   /* border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px; */
+  position: fixed;
+  width: 100%;
+  z-index: 100000000000;
 }
 /* menu bar css */
 

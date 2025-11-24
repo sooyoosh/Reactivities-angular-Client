@@ -12,7 +12,7 @@
 
                         <div class="flex pl-4 pt-4 align-items-center">
                             <p-avatar [image]="act.hostImageUrl?act.hostImageUrl:'../../../assets/images/user.png'"
-                             styleClass="mr-4" size="xlarge" shape="circle" />
+                                styleClass="mr-4" size="xlarge" shape="circle" />
                             <div>
                                 <h3 class="font-bold">{{act.title}}</h3>
                                 <p>hosted by
@@ -21,9 +21,8 @@
                             </div>
                         </div>
                         <div class="pr-4 pt-4 ">
-                            <p-button  [text]="true"
-                            [label]="getActivityLabel(act)"
-                                [severity]="act.isHost?'help':'warning'"  />
+                            <p-button [text]="true" [label]="getActivityLabel(act)"
+                                [severity]="act.isHost?'help':'warning'" />
                         </div>
                     </div>
                 </ng-template>
@@ -44,19 +43,15 @@
                 <div style="background-color: #eeeeee;">
                     <div class="flex gap-3 p-3">
                         @for (item of act.attendees; track item.id) {
-                        <div (click)="goToProfile(item.id)" (mouseenter)="showOverlay($event,item)" (mouseleave)="hideOverlay()">
+                        <div (click)="goToProfile(item.id)" (mouseenter)="showOverlay($event,item)"
+                            (mouseleave)="hideOverlay()">
                             <p-avatar [style]="{'cursor': 'pointer'}" size="large" shape="circle"
                                 [image]="item.imageUrl?item.imageUrl:'../../../assets/images/user.png'" />
                         </div>
                         }
                     </div>
                 </div>
-                <!-- <ul>
-                        <li>{{act.title}}</li>
-                        <li>{{act.date}}</li>
-                        <li>{{act.description}}</li>
-                        <li>{{act.city}}/{{act.venue}}</li>
-                    </ul> -->
+
                 <ng-template pTemplate="footer">
                     <div class="flex gap-3 align-items-center ">
                         <!-- <p-chip [label]="act.category" [icon]="chooseIcon(act.category)" /> -->
@@ -74,6 +69,11 @@
 
             }
         </div>
+        <!-- sensor  -->
+
+        <div appInfiniteScroll (scrolled)="loadMoreActivity()" style="height: 40px;">
+        </div>
+
         }@else {
 
         <p class="m-0 font-bold">
@@ -187,7 +187,8 @@
 
 
     </div>
-
+    <!-- <p-button [disabled]="!nextCursor" [text]="true" severity="info" [label]="nextCursor?'LOAD MORE':'NO MORE!'"
+        (onClick)="loadMoreActivity()" /> -->
 
 </div>
 

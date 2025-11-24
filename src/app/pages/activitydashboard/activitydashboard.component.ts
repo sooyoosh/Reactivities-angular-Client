@@ -17,6 +17,7 @@ import { OverlayPanel } from 'primeng/overlaypanel';
 export class ActivitydashboardComponent implements OnInit{
 
   allActivities:IActivities[]=[]
+  nextCursor:string|null
   activityDetail: IActivities|null;
   activityDetailCard: boolean=false;
   createAndEditMode: boolean=false;
@@ -46,7 +47,7 @@ export class ActivitydashboardComponent implements OnInit{
   }
 
   ngOnInit() {
-    //this.messageService.add({ severity: 'success',key:'tm' ,summary: 'Success', detail: 'Message Content',life:1000 });
+   
     this.getAllActivities();
        this.items = [
             { name: 'New York', code: 'NY' },
@@ -60,11 +61,11 @@ export class ActivitydashboardComponent implements OnInit{
   getAllActivities(){
     this.activityService.getAllActivities().subscribe({
       next:(data)=>{
-        
-        this.allActivities=data
+        this.allActivities=data.items;
+        this.nextCursor=data.nextCursor;
       },
       error:(err)=>{
-        debugger
+        
       }
     })
   }
@@ -89,9 +90,6 @@ export class ActivitydashboardComponent implements OnInit{
   }
 
   viewDetail(detail:IActivities){
-    // this.activityDetail=detail;
-    // this.activityDetailCard=true;
-    // this.createAndEditMode=false;
     this.route.navigate([`main/activities/${detail.id}`])
   }
   activityForEdit(){
@@ -113,9 +111,6 @@ export class ActivitydashboardComponent implements OnInit{
   }
   submitForm(){
     if(this.editMode){
-      // this.allActivities=this.allActivities.map(x => x.id==this.activityForm.controls['id'].value?this.activityForm.value:x)
-      // const activityy=this.allActivities.find(x=>x.id==this.activityForm.controls['id'].value);
-      // if(activityy) this.viewDetail(activityy);
       this.isSubmitting = true;
        this.activityService.EditActivity(this.activityForm.value).subscribe({
         next:(res)=>{
@@ -167,7 +162,16 @@ goToProfile(userId:string){
   this.route.navigate([`main/profiles/${userId}`])
 }
 
-
+loadMoreActivity(){
+  if(!this.nextCursor) return
+   this.activityService.getAllActivities(this.nextCursor).subscribe({
+    next: data => {
+      debugger
+      this.allActivities = [...this.allActivities, ...data.items]; 
+      this.nextCursor = data.nextCursor;       }
+  });
+  
+}
 
   // checkingObjectValue(obj:Record<string,any>):boolean{
   //   const objWithoutValue
